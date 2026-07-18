@@ -50,14 +50,44 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col font-mono text-foreground bg-background overflow-hidden w-full">
-      {/* Theme adaptive grid background */}
-      <div className="absolute inset-0 bg-grid-foreground/[0.02] -z-20 flex items-center justify-center pointer-events-none">
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-      </div>
+    <div
+      className="relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%]"
+      style={{
+        backgroundImage: 'url(/background-img.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#0a0e27',
+      }}
+    >
+      {/* Background overlay for depth */}
+      <div className="absolute inset-0 bg-background/40 -z-20 pointer-events-none" />
+
+      {/* Fade overlay - edges */}
+      <div
+        className="absolute inset-0 -z-20 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at center, transparent 0%, rgba(10, 14, 39, 0.3) 40%, rgba(10, 14, 39, 0.6) 100%)
+          `,
+        }}
+      />
+
+      {/* Gradient blur border glow */}
+      <div
+        className="absolute inset-0 -z-20 pointer-events-none"
+        style={{
+          background: `
+            linear-gradient(to right, rgba(115, 249, 241, 0.15) 0%, transparent 10%, transparent 90%, rgba(115, 249, 241, 0.15) 100%),
+            linear-gradient(to bottom, rgba(115, 249, 241, 0.15) 0%, transparent 10%, transparent 90%, rgba(115, 249, 241, 0.15) 100%)
+          `,
+          backdropFilter: 'blur(40px)',
+          WebkitBackdropFilter: 'blur(40px)',
+        }}
+      />
 
       {/* FIXED NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full h-16 sm:h-20 border-b border-border/40 bg-background/80 backdrop-blur-md z-50 flex items-center transition-colors duration-300">
+      <nav className="fixed top-0 left-0 w-full h-16 sm:h-20 border-b border-[#73F9F1]/20 bg-background/95 backdrop-blur-xl z-50 flex items-center transition-colors duration-300 shadow-lg shadow-[#73F9F1]/5">
         <div className="max-w-9xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <a
@@ -78,18 +108,13 @@ const Hero = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`relative py-1 text-xs sm:text-sm font-semibold tracking-wider transition-colors duration-300 ${
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
+                    className={`relative px-3 py-1.5 text-xs sm:text-sm font-semibold tracking-wider rounded-lg transition-all duration-300 border ${
+                      isActive
+                        ? "border-[#73F9F1] text-[#73F9F1] bg-[#73F9F1]/5"
+                        : "border-foreground/20 text-muted-foreground hover:border-[#73F9F1] hover:text-[#73F9F1] hover:bg-[#73F9F1]/5"
                     }`}
                   >
                     {tab}
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeNavUnderline"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary rounded-full"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
                   </button>
                 );
               })}
@@ -99,7 +124,7 @@ const Hero = () => {
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 border border-primary/50 text-primary hover:border-primary hover:bg-primary/5 active:scale-95 transition-all duration-300 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium"
+                className="flex items-center gap-1.5 border border-[#73F9F1] text-[#73F9F1] hover:border-[#73F9F1] hover:bg-[#73F9F1]/10 active:scale-95 transition-all duration-300 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium"
               >
                 <span>🌐 {lang}</span>
                 <span className="text-[10px] opacity-80">▼</span>
@@ -279,11 +304,11 @@ const Hero = () => {
       {/* Stats Row */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-wrap container mx-auto justify-center gap-10 md:gap-20 border-t border-border/20 pt-10 pb-16 w-full px-4 sm:px-6 lg:px-8"
+        className="flex flex-wrap mx-auto justify-center gap-10 md:gap-20 border-t border-border/20 pb-16 w-full px-4 sm:px-6 lg:px-8"
       >
         {stats.map((stat, idx) => (
           <div key={idx} className="flex items-center gap-3.5 sm:gap-5 text-left">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground tracking-tight leading-none font-mono">
+            <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
               {stat.value}
             </span>
             <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight max-w-[100px] uppercase tracking-wider font-semibold font-mono">
