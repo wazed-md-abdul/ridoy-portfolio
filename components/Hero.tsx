@@ -101,47 +101,109 @@ const Hero = () => {
         }}
       />
 
-      {/* FIXED NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full h-16 sm:h-20 border-b border-[#73F9F1]/20 bg-background/95 backdrop-blur-xl z-50 flex items-center transition-colors duration-300 shadow-lg shadow-[#73F9F1]/5">
-        <div className="max-w-9xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      {/* FIXED NAVBAR — Apple "Liquid Glass" floating bar */}
+      <motion.nav
+        initial={{ y: -40, opacity: 0, x: "-50%" }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute top-3 sm:top-5 left-1/2 z-50 w-[calc(100%-1.25rem)] max-w-7xl rounded-[22px] overflow-hidden border-t border-[rgba(7,88,104,0.3)] backdrop-blur-[24px]"
+        style={{
+          // Frosted glass: deep-saturated blur over the banner's translucent navy
+          backdropFilter: "blur(24px) saturate(190%)",
+          WebkitBackdropFilter: "blur(24px) saturate(190%)",
+
+
+          // Outer depth shadow + inner specular top highlight + faint cyan inner rim
+          boxShadow:
+            "0 8px 32px rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(0, 0, 0, 0.04)",
+        }}
+      >
+
+        {/* Ambient cyan glow bleeding in from the banner theme */}
+        <div
+          className="pointer-events-none absolute -inset-px opacity-60"
+          style={{
+            background:
+              "radial-gradient(120% 140% at 50% -20%, rgba(115,249,241,0.10) 0%, transparent 55%)",
+          }}
+        />
+
+        <div className="relative h-14 sm:h-[68px] px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <a
             href="#"
-            className="flex items-center gap-1.5 font-bold text-lg sm:text-4xl tracking-wider text-foreground hover:opacity-90 transition-opacity"
+            className="group flex items-center gap-2 font-bold text-lg sm:text-2xl tracking-wide text-foreground hover:opacity-90 transition-opacity"
           >
             <span>Hriday Debnath</span>
-            <span className="w-2.5 h-2.5 rounded-full bg-primary inline-block self-center shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#73F9F1] inline-block self-center shadow-[0_0_10px_rgba(115,249,241,0.7)] group-hover:shadow-[0_0_16px_rgba(115,249,241,0.9)] transition-shadow" />
           </a>
 
           {/* Navigation Links & Lang Switcher */}
-          <div className="flex items-center gap-4 sm:gap-8">
-            {/* Center-Right Nav Links */}
-            <div className="flex items-center gap-3 sm:gap-6">
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Center-Right Nav Links — segmented glass control */}
+            <div
+              className="flex items-center gap-1 p-1 rounded-full backdrop-blur-lg"
+              style={{
+                backgroundColor: "rgba(17, 25, 40, 0.45)",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                boxShadow:
+                  "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
+              }}
+            >
               {navLinks.map((tab) => {
                 const isActive = activeTab === tab;
                 return (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`relative px-3 py-1.5 text-xs sm:text-sm font-semibold tracking-wider rounded-lg transition-all duration-300 border ${isActive
-                      ? "border-[#73F9F1] text-[#73F9F1] bg-[#73F9F1]/5"
-                      : "border-foreground/20 text-muted-foreground hover:border-[#73F9F1] hover:text-[#73F9F1] hover:bg-[#73F9F1]/5"
-                      }`}
+                    className="relative px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300"
                   >
-                    {tab}
+                    {/* Sliding active pill — cyan liquid glass */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          backgroundColor: "rgba(115, 249, 241, 0.14)",
+                          border: "1px solid rgba(115, 249, 241, 0.55)",
+                          boxShadow:
+                            "0 0 16px rgba(115,249,241,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2)",
+                        }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 ${isActive
+                        ? "text-[#73F9F1]"
+                        : "text-muted-foreground hover:text-[#73F9F1]"
+                        }`}
+                    >
+                      {tab}
+                    </span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Language Switcher Pill */}
+            {/* Language Switcher Pill — glass */}
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 border border-[#73F9F1] text-[#73F9F1] hover:border-[#73F9F1] hover:bg-[#73F9F1]/10 active:scale-95 transition-all duration-300 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium"
+                className="flex items-center gap-1.5 text-[#73F9F1] active:scale-95 transition-all duration-300 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-lg"
+                style={{
+                  backgroundColor: "rgba(17, 25, 40, 0.45)",
+                  border: "1px solid rgba(115, 249, 241, 0.35)",
+                  boxShadow:
+                    "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
+                }}
               >
                 <span>🌐 {lang}</span>
-                <span className="text-[10px] opacity-80">▼</span>
+                <span
+                  className={`text-[10px] opacity-80 transition-transform duration-300 ${isLangOpen ? "rotate-180" : ""
+                    }`}
+                >
+                  ▼
+                </span>
               </button>
 
               <AnimatePresence>
@@ -151,7 +213,15 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-32 rounded-xl bg-background border border-border shadow-xl py-1.5 z-50"
+                    className="absolute right-0 mt-3 w-36 rounded-2xl overflow-hidden py-1.5 z-50"
+                    style={{
+                      backdropFilter: "blur(24px) saturate(190%)",
+                      WebkitBackdropFilter: "blur(24px) saturate(190%)",
+                      backgroundColor: "rgba(17, 25, 40, 0.75)",
+                      border: "1px solid rgba(255, 255, 255, 0.12)",
+                      boxShadow:
+                        "0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 0 rgba(255,255,255,0.14)",
+                    }}
                   >
                     {languages.map((l) => (
                       <button
@@ -160,7 +230,9 @@ const Hero = () => {
                           setLang(l);
                           setIsLangOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2 text-xs hover:bg-accent hover:text-accent-foreground transition-colors ${lang === l ? "font-bold text-primary" : "text-muted-foreground"
+                        className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#73F9F1]/10 ${lang === l
+                          ? "font-bold text-[#73F9F1]"
+                          : "text-muted-foreground hover:text-[#73F9F1]"
                           }`}
                       >
                         {l}
@@ -172,7 +244,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* HERO CONTENT */}
       <main className="flex-grow flex items-center max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:py-24 ">
