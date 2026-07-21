@@ -1,0 +1,23 @@
+1. [Authentication]
+How did you implement authentication and authorization in the Skill Sphere project using Better Auth and MongoDB?
+
+2. [Next.js]
+Can you explain the advantages of using Next.js for server-side rendering in the Car Rental Platform project?
+
+3. [Performance Optimization]
+How did you optimize the performance of the TicketBari platform to ensure fast page loading and seamless navigation?
+
+4. [REST APIs]
+Describe your experience with REST API development in the TicketBari project, including how you handled API integration and security.
+
+5. [Framer Motion]
+In the Skill Sphere project, how did you use Framer Motion to create interactive animations and enhance the user experience?
+
+6. [JWT]
+Can you walk me through your process for implementing JWT authentication in the Car Rental Platform project?
+
+7. [Payment Integration]
+How did you handle payment integration using Stripe in the TicketBari platform, including any security considerations?
+
+8. [Responsive Design]
+Describe your approach to ensuring responsive design and mobile-friendliness in the Car Rental Platform project using Tailwind CSS.

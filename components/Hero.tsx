@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import Ferrofluid from "./Ferrofluid";
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState("Professional");
@@ -51,15 +52,29 @@ const Hero = () => {
 
   return (
     <div
-      className="relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%]"
-      style={{
-        backgroundImage: 'url(/background-img.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: '#0a0e27',
-      }}
+      className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%]"
+
     >
+      {/* Ferrofluid animated background */}
+      <div className="absolute inset-0 -z-10">
+        <Ferrofluid
+          colors={["#b0b8c3", "#06B6D4", "#06B6D4"]}
+          speed={0.4}
+          scale={1.2}
+          turbulence={1}
+          fluidity={0.1}
+          rimWidth={0.2}
+          sharpness={2.4}
+          shimmer={1.5}
+          glow={2}
+          flowDirection="down"
+          opacity={1}
+          mouseInteraction
+          mouseStrength={3}
+          mouseRadius={0.1}
+        />
+      </div>
+
       {/* Background overlay for depth */}
       <div className="absolute inset-0 bg-background/40 -z-20 pointer-events-none" />
 
@@ -78,8 +93,8 @@ const Hero = () => {
         className="absolute inset-0 -z-20 pointer-events-none"
         style={{
           background: `
-            linear-gradient(to right, rgba(115, 249, 241, 0.15) 0%, transparent 10%, transparent 90%, rgba(115, 249, 241, 0.15) 100%),
-            linear-gradient(to bottom, rgba(115, 249, 241, 0.15) 0%, transparent 10%, transparent 90%, rgba(115, 249, 241, 0.15) 100%)
+            linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.85) 100%),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.85) 100%)
           `,
           backdropFilter: 'blur(40px)',
           WebkitBackdropFilter: 'blur(40px)',
@@ -108,11 +123,10 @@ const Hero = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`relative px-3 py-1.5 text-xs sm:text-sm font-semibold tracking-wider rounded-lg transition-all duration-300 border ${
-                      isActive
-                        ? "border-[#73F9F1] text-[#73F9F1] bg-[#73F9F1]/5"
-                        : "border-foreground/20 text-muted-foreground hover:border-[#73F9F1] hover:text-[#73F9F1] hover:bg-[#73F9F1]/5"
-                    }`}
+                    className={`relative px-3 py-1.5 text-xs sm:text-sm font-semibold tracking-wider rounded-lg transition-all duration-300 border ${isActive
+                      ? "border-[#73F9F1] text-[#73F9F1] bg-[#73F9F1]/5"
+                      : "border-foreground/20 text-muted-foreground hover:border-[#73F9F1] hover:text-[#73F9F1] hover:bg-[#73F9F1]/5"
+                      }`}
                   >
                     {tab}
                   </button>
@@ -146,9 +160,8 @@ const Hero = () => {
                           setLang(l);
                           setIsLangOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2 text-xs hover:bg-accent hover:text-accent-foreground transition-colors ${
-                          lang === l ? "font-bold text-primary" : "text-muted-foreground"
-                        }`}
+                        className={`w-full text-left px-4 py-2 text-xs hover:bg-accent hover:text-accent-foreground transition-colors ${lang === l ? "font-bold text-primary" : "text-muted-foreground"
+                          }`}
                       >
                         {l}
                       </button>
@@ -185,14 +198,14 @@ const Hero = () => {
                 Hello I&apos;m
               </h1>
               <h2 className="text-4xl sm:text-5xl md:text-[79px] font-semibold tracking-tight text-[#73F9F1] leading-none mt-1">
-                Hriday <br/> Debnath
+                Hriday <br /> Debnath
               </h2>
             </motion.div>
 
             {/* Tagline */}
             <motion.p
               variants={itemVariants}
-              className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-mono"
+              className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-mono"
             >
               Pragmatic, delivery-oriented | Fintech, Cloud & AI Engineering | Mongolia
             </motion.p>
@@ -205,7 +218,7 @@ const Hero = () => {
               {/* CTA Button */}
               <a
                 href="#cv"
-                className="group relative inline-flex items-center justify-center border border-[#73F9F1] text-[#73F9F1] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-transparent transition-colors duration-300 self-start sm:self-auto active:scale-95"
+                className="group relative inline-flex items-center justify-center  text-[#73F9F1] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-start sm:self-auto active:scale-95"
               >
                 <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
                 <span>VIEW CV &gt;</span>
@@ -220,7 +233,7 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${social.name}`}
-                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#73F9F1] text-[#73F9F1] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
+                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full  bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#73F9F1] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
                   >
                     <social.icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                   </a>
@@ -228,7 +241,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            
+
           </motion.div>
 
           {/* RIGHT COLUMN: Rotating Rings & Portrait */}
@@ -240,7 +253,7 @@ const Hero = () => {
           >
             {/* Visual Container Sizing */}
             <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
-              
+
               {/* Outermost Rotating Ring (Primary Color, Clockwise) */}
               <motion.div
                 animate={{ rotate: 360 }}
@@ -304,18 +317,20 @@ const Hero = () => {
       {/* Stats Row */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-wrap mx-auto justify-center gap-10 md:gap-20 border-t border-border/20 pb-16 w-full px-4 sm:px-6 lg:px-8"
+        className="w-full px-4 sm:px-6 lg:px-8 pb-16"
       >
-        {stats.map((stat, idx) => (
-          <div key={idx} className="flex items-center gap-3.5 sm:gap-5 text-left">
-            <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
-              {stat.value}
-            </span>
-            <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight max-w-[100px] uppercase tracking-wider font-semibold font-mono">
-              {stat.label}
-            </span>
-          </div>
-        ))}
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 md:gap-20 rounded-full  bg-background-900/50 backdrop-blur-lg shadow-[0_8px_40px_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(7,88,104,0.25)] px-8 sm:px-12 py-8 sm:py-4">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="flex items-center gap-3.5 sm:gap-5 text-left">
+              <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
+                {stat.value}
+              </span>
+              <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight max-w-[100px] uppercase tracking-wider font-semibold font-mono">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </div>
   );
