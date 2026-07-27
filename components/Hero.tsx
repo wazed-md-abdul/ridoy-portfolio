@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import Ferrofluid from "./Ferrofluid";
@@ -316,72 +315,48 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* RIGHT COLUMN: Rotating Rings & Portrait */}
+          {/* RIGHT COLUMN: 3D Holographic WebM Portrait (Seamlessly Blended) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             className="lg:col-span-5 flex justify-center items-center relative py-6 lg:py-0"
           >
-            {/* Visual Container Sizing */}
-            <div className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
+            {/* Visual Container with 3D Floating Motion */}
+            <motion.div
+              animate={{ y: [0, -12, 0], scale: [1, 1.02, 1] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-full max-w-[500px] aspect-square flex items-center justify-center"
+            >
+              {/* Backlight Ambient Glow for 3D depth */}
+              <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle_at_center,rgba(115,249,241,0.25)_0%,rgba(6,182,212,0.1)_45%,transparent_70%)] filter blur-3xl pointer-events-none -z-10" />
 
-              {/* Outermost Rotating Ring (Primary Color, Clockwise) */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-                className="absolute inset-0 z-10 pointer-events-none text-[#73F9F1]"
+              {/* Seamlessly Blended Video Container */}
+              <div
+                className="w-full h-full relative flex items-center justify-center"
+                style={{
+                  maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 55%, transparent 98%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 55%, transparent 98%)",
+                }}
               >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="48"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="1.9"
-                    strokeDasharray="22 8 8 6 12 5 28 8"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </motion.div>
-
-              {/* Second Rotating Ring (Accent/Muted-Foreground, Counter-Clockwise) */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
-                className="absolute inset-[8px] sm:inset-[12px] z-10 pointer-events-none text-muted-foreground/30"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="48"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="0.8"
-                    strokeDasharray="8 12 18 6 4 10"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </motion.div>
-
-              {/* Theme Gradient Glow Circle */}
-              <div className="absolute inset-[16px] sm:inset-[24px] rounded-full bg-gradient-to-tr from-primary/10 via-accent/20 to-secondary/15 filter blur-[6px] -z-10" />
-
-              {/* Portrait Image Container */}
-              <div className="w-[84%] h-[84%] rounded-full overflow-hidden border border-primary/20 relative bg-background shadow-xl flex items-center justify-center">
-                <Image
-                  src="/hridoy.jpg"
-                  alt="Hriday Debnath Bulgan"
-                  fill
-                  sizes="(max-w-7xl) 100vw, 500px"
-                  className="object-cover rounded-full p-2 scale-102 transition-transform duration-500 hover:scale-105"
-                  priority
-                />
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={(e) => {
+                    const target = e.target as HTMLVideoElement;
+                    target.currentTime = 0;
+                    target.play().catch(() => { });
+                  }}
+                  className="w-full h-full object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(115,249,241,0.35)]"
+                >
+                  <source src="/my-portrait-3.webm" type="video/webm" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
-
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
