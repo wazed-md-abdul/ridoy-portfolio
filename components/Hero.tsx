@@ -51,13 +51,13 @@ const Hero = () => {
 
   return (
     <div
-      className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%]"
-
+      className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%] bg-[#010307]"
+      style={{ backgroundColor: "#010307" }}
     >
       {/* Ferrofluid animated background */}
       <div className="absolute inset-0 -z-10">
         <Ferrofluid
-          colors={["#b0b8c3", "#06B6D4", "#06B6D4"]}
+          colors={["#010307", "#06B6D4", "#06B6D4"]}
           speed={0.4}
           scale={1.2}
           turbulence={1}
@@ -75,14 +75,14 @@ const Hero = () => {
       </div>
 
       {/* Background overlay for depth */}
-      <div className="absolute inset-0 bg-background/40 -z-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#010307]/50 -z-20 pointer-events-none" />
 
       {/* Fade overlay - edges */}
       <div
         className="absolute inset-0 -z-20 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse at center, transparent 0%, rgba(10, 14, 39, 0.3) 40%, rgba(10, 14, 39, 0.6) 100%)
+            radial-gradient(ellipse at center, transparent 0%, rgba(1, 3, 7, 0.4) 40%, rgba(1, 3, 7, 0.85) 100%)
           `,
         }}
       />
@@ -92,8 +92,8 @@ const Hero = () => {
         className="absolute inset-0 -z-20 pointer-events-none"
         style={{
           background: `
-            linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.85) 100%),
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.85) 100%)
+            linear-gradient(to right, rgba(1, 3, 7, 0.85) 0%, transparent 12%, transparent 88%, rgba(1, 3, 7, 0.85) 100%),
+            linear-gradient(to bottom, rgba(1, 3, 7, 0.85) 0%, transparent 12%, transparent 88%, rgba(1, 3, 7, 0.85) 100%)
           `,
           backdropFilter: 'blur(40px)',
           WebkitBackdropFilter: 'blur(40px)',
@@ -315,28 +315,68 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* RIGHT COLUMN: 3D Holographic WebM Portrait (Seamlessly Blended) */}
+          {/* RIGHT COLUMN: 3D Holographic WebM Portrait */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             className="lg:col-span-5 flex justify-center items-center relative py-6 lg:py-0"
           >
-            {/* Visual Container with 3D Floating Motion */}
+            {/* Visual Container Sizing with 3D Floating Motion */}
             <motion.div
-              animate={{ y: [0, -12, 0], scale: [1, 1.02, 1] }}
+              animate={{ y: [0, -10, 0], scale: [1, 1.02, 1] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full max-w-[500px] aspect-square flex items-center justify-center"
+              className="relative w-[290px] h-[290px] sm:w-[390px] sm:h-[390px] md:w-[450px] md:h-[450px] lg:w-[490px] lg:h-[490px] flex items-center justify-center"
             >
-              {/* Backlight Ambient Glow for 3D depth */}
-              <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle_at_center,rgba(115,249,241,0.25)_0%,rgba(6,182,212,0.1)_45%,transparent_70%)] filter blur-3xl pointer-events-none -z-10" />
+              {/* Outermost Rotating Cyber Ring (Cyan) */}
+              {/* <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                className="absolute inset-0 z-20 pointer-events-none text-[#73F9F1]"
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="48.5"
+                    fill="transparent"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeDasharray="20 8 6 6 14 6 24 8"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </motion.div> */}
 
-              {/* Seamlessly Blended Video Container */}
+              {/* Inner Counter-Rotating Ring */}
+              {/* <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+                className="absolute inset-[10px] z-20 pointer-events-none text-[#73F9F1]/40"
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="48"
+                    fill="transparent"
+                    stroke="currentColor"
+                    strokeWidth="0.8"
+                    strokeDasharray="10 14 18 6 4 12"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </motion.div> */}
+
+              {/* Backlight Radial Glow */}
+              {/* <div className="absolute inset-4 rounded-full bg-[radial-gradient(circle_at_center,rgba(115,249,241,0.35)_0%,rgba(6,182,212,0.15)_50%,transparent_75%)] filter blur-2xl pointer-events-none z-0" /> */}
+
+              {/* Masked Circular Video Container */}
               <div
-                className="w-full h-full relative flex items-center justify-center"
+                className="w-[100%] h-[100%] rounded-full overflow-hidden relative z-10 flex items-center justify-center shadow-[0_0_50px_rgba(115,249,241,0.35)]"
                 style={{
-                  maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 55%, transparent 98%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 55%, transparent 98%)",
+                  maskImage: "radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 90%)",
+                  WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 90%)",
                 }}
               >
                 <video
@@ -350,9 +390,9 @@ const Hero = () => {
                     target.currentTime = 0;
                     target.play().catch(() => { });
                   }}
-                  className="w-full h-full object-contain mix-blend-screen drop-shadow-[0_0_35px_rgba(115,249,241,0.35)]"
+                  className="w-full h-full object-cover scale-110 mix-blend-screen"
                 >
-                  <source src="/my-portrait-3.webm" type="video/webm" />
+                  <source src="/my-portrait-3.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
