@@ -51,7 +51,7 @@ const Hero = () => {
 
   return (
     <div
-      className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-hidden -mx-full ml-[-50vw] left-[50%] bg-[#010307]"
+      className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-x-clip overflow-y-visible -mx-full ml-[-50vw] left-[50%] bg-[#010307]"
       style={{ backgroundColor: "#010307" }}
     >
       {/* Ferrofluid animated background */}
@@ -105,43 +105,37 @@ const Hero = () => {
         initial={{ y: -40, opacity: 0, x: "-50%" }}
         animate={{ y: 0, opacity: 1, x: "-50%" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute top-3 sm:top-5 left-1/2 z-50 w-[calc(100%-1.25rem)] max-w-7xl rounded-[22px] overflow-hidden border-t border-[rgba(7,88,104,0.3)] backdrop-blur-[24px]"
+        className="absolute top-3 sm:top-4 md:top-5 left-1/2 z-50 w-[calc(100%-1rem)] sm:w-[calc(100%-1.25rem)] max-w-7xl rounded-2xl sm:rounded-[22px] overflow-visible border-t border-[rgba(7,88,104,0.3)] backdrop-blur-[24px]"
         style={{
-          // Frosted glass: deep-saturated blur over the banner's translucent navy
           backdropFilter: "blur(24px) saturate(190%)",
           WebkitBackdropFilter: "blur(24px) saturate(190%)",
-
-
-          // Outer depth shadow + inner specular top highlight + faint cyan inner rim
           boxShadow:
             "0 8px 32px rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(0, 0, 0, 0.04)",
         }}
       >
-
-        {/* Ambient cyan glow bleeding in from the banner theme */}
         <div
-          className="pointer-events-none absolute -inset-px opacity-60"
+          className="pointer-events-none absolute -inset-px opacity-60 rounded-2xl sm:rounded-[22px]"
           style={{
             background:
               "radial-gradient(120% 140% at 50% -20%, rgba(115,249,241,0.10) 0%, transparent 55%)",
           }}
         />
 
-        <div className="relative h-14 sm:h-[68px] px-4 sm:px-6 flex items-center justify-between">
+        <div className="relative min-h-12 sm:min-h-14 md:h-[68px] px-3 sm:px-4 md:px-6 py-2 sm:py-0 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
           {/* Logo */}
           <a
             href="#"
-            className="group flex items-center gap-2 font-bold text-lg sm:text-2xl tracking-wide text-foreground hover:opacity-90 transition-opacity"
+            className="group flex items-center gap-1.5 sm:gap-2 font-bold text-base sm:text-xl md:text-2xl tracking-wide text-foreground hover:opacity-90 transition-opacity shrink-0"
           >
-            <span>Hriday Debnath</span>
-            <span className="w-2.5 h-2.5 rounded-full bg-[#73F9F1] inline-block self-center shadow-[0_0_10px_rgba(115,249,241,0.7)] group-hover:shadow-[0_0_16px_rgba(115,249,241,0.9)] transition-shadow" />
+            <span className="sm:hidden">Hriday</span>
+            <span className="hidden sm:inline">Hriday Debnath</span>
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#73F9F1] inline-block self-center shadow-[0_0_10px_rgba(115,249,241,0.7)] group-hover:shadow-[0_0_16px_rgba(115,249,241,0.9)] transition-shadow" />
           </a>
 
           {/* Navigation Links & Lang Switcher */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Center-Right Nav Links — segmented glass control */}
+          <div className="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-3 md:gap-4 min-w-0">
             <div
-              className="flex items-center gap-1 p-1 rounded-full backdrop-blur-lg"
+              className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full backdrop-blur-lg overflow-x-auto max-w-full scrollbar-none"
               style={{
                 backgroundColor: "rgba(17, 25, 40, 0.45)",
                 border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -155,9 +149,8 @@ const Hero = () => {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className="relative px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300"
+                    className="relative px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300 whitespace-nowrap"
                   >
-                    {/* Sliding active pill — cyan liquid glass */}
                     {isActive && (
                       <motion.span
                         layoutId="nav-active-pill"
@@ -185,10 +178,10 @@ const Hero = () => {
             </div>
 
             {/* Language Switcher Pill — glass */}
-            <div className="relative">
+            <div className="relative shrink-0">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 text-[#73F9F1] active:scale-95 transition-all duration-300 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-lg"
+                className="flex items-center gap-1 sm:gap-1.5 text-[#73F9F1] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
                 style={{
                   backgroundColor: "rgba(17, 25, 40, 0.45)",
                   border: "1px solid rgba(115, 249, 241, 0.35)",
@@ -196,9 +189,10 @@ const Hero = () => {
                     "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
                 }}
               >
-                <span>🌐 {lang}</span>
+                <span className="sm:hidden">🌐</span>
+                <span className="hidden sm:inline">🌐 {lang}</span>
                 <span
-                  className={`text-[10px] opacity-80 transition-transform duration-300 ${isLangOpen ? "rotate-180" : ""
+                  className={`text-[10px] opacity-80 transition-transform duration-300 hidden sm:inline ${isLangOpen ? "rotate-180" : ""
                     }`}
                 >
                   ▼
@@ -246,14 +240,14 @@ const Hero = () => {
       </motion.nav>
 
       {/* HERO CONTENT */}
-      <main className="flex-grow flex items-center max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:py-24 ">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12  lg:gap-8 items-center w-full">
+      <main className="flex-grow flex items-center max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-28 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:py-20 lg:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-4 lg:gap-2 items-center w-full">
           {/* LEFT COLUMN: Texts & Stats */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 flex flex-col justify-center space-y-6 sm:space-y-9"
+            className="md:col-span-6 lg:col-span-5 flex flex-col justify-center space-y-5 sm:space-y-7 md:space-y-8 lg:space-y-9 text-center md:text-left items-center md:items-start order-2 md:order-1"
           >
             {/* Label */}
             <motion.span
@@ -264,11 +258,11 @@ const Hero = () => {
             </motion.span>
 
             {/* Heading */}
-            <motion.div variants={itemVariants} className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-none text-foreground">
+            <motion.div variants={itemVariants} className="space-y-1 sm:space-y-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-none text-foreground">
                 Hello I&apos;m
               </h1>
-              <h2 className="text-4xl sm:text-5xl md:text-[79px] font-semibold tracking-tight text-[#73F9F1] leading-none mt-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[79px] font-semibold tracking-tight text-[#73F9F1] leading-none mt-1">
                 Hriday <br /> Debnath
               </h2>
             </motion.div>
@@ -276,7 +270,7 @@ const Hero = () => {
             {/* Tagline */}
             <motion.p
               variants={itemVariants}
-              className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed font-mono"
+              className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg max-w-md md:max-w-xl leading-relaxed font-mono px-2 sm:px-0"
             >
               Pragmatic, delivery-oriented | Fintech, Cloud & AI Engineering | Mongolia
             </motion.p>
@@ -284,19 +278,19 @@ const Hero = () => {
             {/* CTA & Socials Row */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row sm:items-center gap-6 pt-2"
+              className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-1 sm:pt-2 w-full sm:w-auto justify-center md:justify-start"
             >
               {/* CTA Button */}
               <a
                 href="#cv"
-                className="group relative inline-flex items-center justify-center  text-[#73F9F1] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-start sm:self-auto active:scale-95"
+                className="group relative inline-flex items-center justify-center text-[#73F9F1] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
               >
                 <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
                 <span>VIEW CV &gt;</span>
               </a>
 
               {/* Social Icons */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center md:justify-start gap-2.5 sm:gap-3">
                 {socials.map((social) => (
                   <a
                     key={social.name}
@@ -304,115 +298,65 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${social.name}`}
-                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full  bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#73F9F1] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
+                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#73F9F1] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
                   >
-                    <social.icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                    <social.icon className="w-4 h-4" />
                   </a>
                 ))}
               </div>
             </motion.div>
-
-
           </motion.div>
 
           {/* RIGHT COLUMN: 3D Holographic WebM Portrait */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="lg:col-span-5 flex justify-center items-center relative py-6 lg:py-0"
+            className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end items-center relative py-2 sm:py-4 md:py-0 order-1 md:order-2 overflow-visible"
           >
-            {/* Visual Container Sizing with 3D Floating Motion */}
-            <motion.div
-              animate={{ y: [0, -10, 0], scale: [1, 1.02, 1] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-[290px] h-[290px] sm:w-[390px] sm:h-[390px] md:w-[450px] md:h-[450px] lg:w-[490px] lg:h-[490px] flex items-center justify-center"
+            <div
+              className="relative flex items-center justify-center overflow-visible blend-multiply"
+              style={{
+                width: "min(85vw, 580px)",
+                height: "min(85vw, 580px)",
+              }}
             >
-              {/* Outermost Rotating Cyber Ring (Cyan) */}
-              {/* <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-                className="absolute inset-0 z-20 pointer-events-none text-[#73F9F1]"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="48.5"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeDasharray="20 8 6 6 14 6 24 8"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </motion.div> */}
-
-              {/* Inner Counter-Rotating Ring */}
-              {/* <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                className="absolute inset-[10px] z-20 pointer-events-none text-[#73F9F1]/40"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="48"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="0.8"
-                    strokeDasharray="10 14 18 6 4 12"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </motion.div> */}
-
-              {/* Backlight Radial Glow */}
-              {/* <div className="absolute inset-4 rounded-full bg-[radial-gradient(circle_at_center,rgba(115,249,241,0.35)_0%,rgba(6,182,212,0.15)_50%,transparent_75%)] filter blur-2xl pointer-events-none z-0" /> */}
-
-              {/* Masked Circular Video Container */}
-              <div
-                className="w-[100%] h-[100%] rounded-full overflow-hidden relative z-10 flex items-center justify-center shadow-[0_0_50px_rgba(115,249,241,0.35)]"
-                style={{
-                  maskImage: "radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 90%)",
-                  WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 90%)",
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                onEnded={(e) => {
+                  const target = e.target as HTMLVideoElement;
+                  target.currentTime = 0;
+                  target.play().catch(() => { });
                 }}
+                className="w-full h-full object-contain mix-blend-screen scale-105 md:scale-110 origin-center"
               >
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  onEnded={(e) => {
-                    const target = e.target as HTMLVideoElement;
-                    target.currentTime = 0;
-                    target.play().catch(() => { });
-                  }}
-                  className="w-full h-full object-cover scale-110 mix-blend-screen"
-                >
-                  <source src="/my-portrait-3.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </motion.div>
+                <source src="/Final.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </motion.div>
         </div>
-
       </main>
+
       {/* Stats Row */}
       <motion.div
         variants={itemVariants}
-        className="w-full px-4 sm:px-6 lg:px-8 pb-16"
+        className="w-full px-3 sm:px-6 lg:px-8 pb-10 sm:pb-14 md:pb-16"
       >
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10 md:gap-20 rounded-full  bg-background-900/50 backdrop-blur-lg shadow-[0_8px_40px_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(7,88,104,0.25)] px-8 sm:px-12 py-8 sm:py-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20 rounded-3xl sm:rounded-full bg-background-900/50 backdrop-blur-lg shadow-[0_8px_40px_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(7,88,104,0.25)] px-5 sm:px-8 md:px-12 py-6 sm:py-6 md:py-4">
           {stats.map((stat, idx) => (
-            <div key={idx} className="flex items-center gap-3.5 sm:gap-5 text-left">
-              <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
+            <div
+              key={idx}
+              className="flex items-center gap-2.5 sm:gap-3.5 md:gap-5 text-left justify-center md:justify-start"
+            >
+              <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
                 {stat.value}
               </span>
-              <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight max-w-[100px] uppercase tracking-wider font-semibold font-mono">
+              <span className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight max-w-[72px] sm:max-w-[100px] uppercase tracking-wider font-semibold font-mono">
                 {stat.label}
               </span>
             </div>
