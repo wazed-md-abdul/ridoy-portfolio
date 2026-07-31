@@ -57,7 +57,7 @@ const Hero = () => {
       {/* Ferrofluid animated background */}
       <div className="absolute inset-0 -z-10">
         <Ferrofluid
-          colors={["#010307", "#06B6D4", "#06B6D4"]}
+          colors={["#010307", "#13D6E9", "#13D6E9"]}
           speed={0.4}
           scale={1.2}
           turbulence={1}
@@ -72,6 +72,8 @@ const Hero = () => {
           mouseStrength={3}
           mouseRadius={0.1}
         />
+        {/* Blend-multiply dark overlay to suppress ferrofluid under avatar */}
+
       </div>
 
       {/* Background overlay for depth */}
@@ -117,7 +119,7 @@ const Hero = () => {
           className="pointer-events-none absolute -inset-px opacity-60 rounded-2xl sm:rounded-[22px]"
           style={{
             background:
-              "radial-gradient(120% 140% at 50% -20%, rgba(115,249,241,0.10) 0%, transparent 55%)",
+              "radial-gradient(120% 140% at 50% -20%, rgba(19,214,233,0.10) 0%, transparent 55%)",
           }}
         />
 
@@ -129,7 +131,7 @@ const Hero = () => {
           >
             <span className="sm:hidden">Hriday</span>
             <span className="hidden sm:inline">Hriday Debnath</span>
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#73F9F1] inline-block self-center shadow-[0_0_10px_rgba(115,249,241,0.7)] group-hover:shadow-[0_0_16px_rgba(115,249,241,0.9)] transition-shadow" />
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#13D6E9] inline-block self-center shadow-[0_0_10px_rgba(19,214,233,0.7)] group-hover:shadow-[0_0_16px_rgba(19,214,233,0.9)] transition-shadow" />
           </a>
 
           {/* Navigation Links & Lang Switcher */}
@@ -157,17 +159,17 @@ const Hero = () => {
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
                         className="absolute inset-0 rounded-full"
                         style={{
-                          backgroundColor: "rgba(115, 249, 241, 0.14)",
-                          border: "1px solid rgba(115, 249, 241, 0.55)",
+                          backgroundColor: "rgba(19, 214, 233, 0.14)",
+                          border: "1px solid rgba(19, 214, 233, 0.55)",
                           boxShadow:
-                            "0 0 16px rgba(115,249,241,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2)",
+                            "0 0 16px rgba(19,214,233,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2)",
                         }}
                       />
                     )}
                     <span
                       className={`relative z-10 ${isActive
-                        ? "text-[#73F9F1]"
-                        : "text-muted-foreground hover:text-[#73F9F1]"
+                        ? "text-[#13D6E9]"
+                        : "text-muted-foreground hover:text-[#13D6E9]"
                         }`}
                     >
                       {tab}
@@ -181,10 +183,10 @@ const Hero = () => {
             <div className="relative shrink-0">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 sm:gap-1.5 text-[#73F9F1] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
+                className="flex items-center gap-1 sm:gap-1.5 text-[#13D6E9] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
                 style={{
                   backgroundColor: "rgba(17, 25, 40, 0.45)",
-                  border: "1px solid rgba(115, 249, 241, 0.35)",
+                  border: "1px solid rgba(19, 214, 233, 0.35)",
                   boxShadow:
                     "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
                 }}
@@ -223,9 +225,9 @@ const Hero = () => {
                           setLang(l);
                           setIsLangOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#73F9F1]/10 ${lang === l
-                          ? "font-bold text-[#73F9F1]"
-                          : "text-muted-foreground hover:text-[#73F9F1]"
+                        className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#13D6E9]/10 ${lang === l
+                          ? "font-bold text-[#13D6E9]"
+                          : "text-muted-foreground hover:text-[#13D6E9]"
                           }`}
                       >
                         {l}
@@ -262,7 +264,7 @@ const Hero = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-none text-foreground">
                 Hello I&apos;m
               </h1>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[79px] font-semibold tracking-tight text-[#73F9F1] leading-none mt-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[79px] font-semibold tracking-tight text-[#13D6E9] leading-none mt-1">
                 Hriday <br /> Debnath
               </h2>
             </motion.div>
@@ -283,7 +285,7 @@ const Hero = () => {
               {/* CTA Button */}
               <a
                 href="#cv"
-                className="group relative inline-flex items-center justify-center text-[#73F9F1] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
+                className="group relative inline-flex items-center justify-center text-[#13D6E9] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
               >
                 <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
                 <span>VIEW CV &gt;</span>
@@ -298,7 +300,7 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit ${social.name}`}
-                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#73F9F1] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
+                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#13D6E9] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -315,10 +317,11 @@ const Hero = () => {
             className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end items-center relative py-2 sm:py-4 md:py-0 order-1 md:order-2 overflow-visible"
           >
             <div
-              className="relative flex items-center justify-center overflow-visible blend-multiply"
+              className="relative flex items-center justify-center overflow-visible"
               style={{
                 width: "min(85vw, 580px)",
                 height: "min(85vw, 580px)",
+                isolation: "isolate",
               }}
             >
               <video
@@ -332,7 +335,7 @@ const Hero = () => {
                   target.currentTime = 0;
                   target.play().catch(() => { });
                 }}
-                className="w-full h-full object-contain mix-blend-screen scale-105 md:scale-110 origin-center"
+                className="w-full h-full object-contain mix-blend-lighten scale-105 md:scale-110 origin-center"
               >
                 <source src="/Final.webm" type="video/webm" />
                 Your browser does not support the video tag.
