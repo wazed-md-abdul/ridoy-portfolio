@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import Ferrofluid from "./Ferrofluid";
+import { MeshGradientBackground } from "./ui/mesh-gradient";
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState("Professional");
@@ -54,26 +55,13 @@ const Hero = () => {
       className="isolate relative w-screen min-h-screen flex flex-col font-mono text-foreground overflow-x-clip overflow-y-visible -mx-full ml-[-50vw] left-[50%] bg-[#010307]"
       style={{ backgroundColor: "#010307" }}
     >
-      {/* Ferrofluid animated background */}
+      {/* Mesh gradient animated background */}
       <div className="absolute inset-0 -z-10">
-        <Ferrofluid
-          colors={["#010307", "#13D6E9", "#13D6E9"]}
-          speed={0.4}
-          scale={1.2}
-          turbulence={1}
-          fluidity={0.1}
-          rimWidth={0.2}
-          sharpness={2.4}
-          shimmer={1.5}
-          glow={2}
-          flowDirection="down"
-          opacity={1}
-          mouseInteraction
-          mouseStrength={3}
-          mouseRadius={0.1}
+        <MeshGradientBackground
+          colors={["#075868", "#13D6E9", "#06b6d4", "#2563eb", "#7c3aed"]}
+          speed={1.2}
+          backgroundColor="#010307"
         />
-        {/* Blend-multiply dark overlay to suppress ferrofluid under avatar */}
-
       </div>
 
       {/* Background overlay for depth */}
