@@ -9,7 +9,10 @@ interface BlendedVideoProps {
 
 const BlendedVideo: React.FC<BlendedVideoProps> = ({ src, className }) => {
   return (
-    <div className={`relative ${className || ""}`}>
+    <div
+      className={`relative ${className || ""}`}
+      style={{ background: "transparent" }}
+    >
       <video
         src={src}
         autoPlay
@@ -18,7 +21,13 @@ const BlendedVideo: React.FC<BlendedVideoProps> = ({ src, className }) => {
         playsInline
         preload="auto"
         className="w-full h-full object-contain"
-
+        style={{
+          mixBlendMode: "screen",
+          background: "transparent",
+          border: "none",
+          outline: "none",
+          WebkitAppearance: "none",
+        }}
       />
     </div>
   );

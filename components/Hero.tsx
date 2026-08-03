@@ -313,7 +313,6 @@ const Hero = () => {
                 style={{
                   width: "min(90vw, 580px)",
                   height: "min(90vw, 580px)",
-
                 }}
               >
                 <BlendedVideo
