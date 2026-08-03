@@ -10,9 +10,13 @@ export default withSentryConfig(nextConfig, {
 silent: true,
 org: "javascript-mastery",
 project: "javascript-nextjs",
+dryRun: !process.env.SENTRY_AUTH_TOKEN,
 }, {
 // For all available options, see:
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+disableServerWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
+disableClientWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
 
 // Upload a larger set of source maps for prettier stack traces (increases build time)
 widenClientFileUpload: true,

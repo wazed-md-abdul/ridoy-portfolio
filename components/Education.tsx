@@ -36,7 +36,7 @@ const Education = () => {
         <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_15%,black)]" />
       </div>
 
-      <div className="max-w-9xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,10 +45,10 @@ const Education = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col items-center text-center mb-14 sm:mb-16"
         >
-          <span className="text- text-xs sm:text-sm font-bold uppercase tracking-[0.25em]">
+          <span className="text-primary text-xs sm:text-sm font-bold uppercase tracking-[0.25em]">
             My Journey
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-none">
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-none text-white">
             Edu<span className="text-[#13D6E9]">cation</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base max-w-xl leading-relaxed">
@@ -68,7 +68,9 @@ const Education = () => {
             <motion.article
               key={item.id}
               variants={cardVariants}
-              className="group relative flex flex-col rounded-2xl border border-border/50 bg-background/60 backdrop-blur-sm p-6 sm:p-8 transition-all duration-300 hover:border-[#13D6E9]/50 hover:-translate-y-1.5 hover:shadow-[0_12px_40px_-12px_hsl(var(--[#13D6E9])/0.25)]"
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="group relative flex flex-col rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-6 sm:p-8 transition-colors duration-300 hover:border-[#13D6E9]/50 hover:shadow-[0_12px_40px_-12px_rgba(19,214,233,0.25)]"
             >
               {/* Corner accent glow on hover */}
               <div className="absolute -top-px -right-px w-24 h-24 rounded-tr-2xl bg-gradient-to-bl from-[#13D6E9]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -89,7 +91,7 @@ const Education = () => {
               </span>
 
               {/* Degree */}
-              <h3 className="text-lg sm:text-xl font-bold tracking-tight leading-snug">
+              <h3 className="text-lg sm:text-xl font-bold tracking-tight leading-snug text-white">
                 {item.degree}
               </h3>
 
