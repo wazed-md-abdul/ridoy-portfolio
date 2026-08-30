@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import CountUp from "react-countup";
-import Ferrofluid from "./Ferrofluid";
+import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { MeshGradientBackground } from "./ui/mesh-gradient";
 import BlendedVideo from "./BlendedVideo";
 
@@ -54,144 +54,138 @@ const Hero = () => {
 
   return (
     <>
-      {/* FIXED NAVBAR — Apple "Liquid Glass" floating bar */}
+      {/* FIXED NAVBAR — Liquid Glass floating bar */}
       <motion.nav
         initial={{ y: -40, opacity: 0, x: "-50%" }}
         animate={{ y: 0, opacity: 1, x: "-50%" }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-3 sm:top-4 md:top-5 left-1/2 z-[5000] w-[calc(100%-2.5rem)] max-w-7xl"
       >
-        <div
-          className="relative min-h-12 sm:min-h-14 md:h-[68px] px-3 sm:px-4 md:px-6 py-2 sm:py-0 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 rounded-2xl sm:rounded-[22px] border-t border-[rgba(7,88,104,0.3)] backdrop-blur-[24px]"
-          style={{
-            backdropFilter: "blur(24px) saturate(190%)",
-            WebkitBackdropFilter: "blur(24px) saturate(190%)",
-            boxShadow:
-              "0 8px 32px rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(0, 0, 0, 0.04)",
-          }}
+        <LiquidGlassCard
+          glowIntensity="sm"
+          shadowIntensity="none"
+          borderRadius="22px"
+          blurIntensity="xl"
+          draggable={false}
+          className="w-full min-h-12 sm:min-h-14 md:h-[68px] px-3 sm:px-4 md:px-6 py-2 sm:py-0 border-0 shadow-none"
         >
-          <div
-            className="pointer-events-none absolute -inset-px opacity-60 rounded-2xl sm:rounded-[22px]"
-            style={{
-              background:
-                "radial-gradient(120% 140% at 50% -20%, rgba(19,214,233,0.10) 0%, transparent 55%)",
-            }}
-          />
-          {/* Logo */}
-          <a
-            href="#"
-            className="group flex items-center gap-1.5 sm:gap-2 font-bold text-base sm:text-xl md:text-2xl tracking-wide text-foreground hover:opacity-90 transition-opacity shrink-0 z-10"
-          >
-            <span className="sm:hidden">Hriday</span>
-            <span className="hidden sm:inline">Hriday Debnath</span>
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#13D6E9] inline-block self-center shadow-[0_0_10px_rgba(19,214,233,0.7)] group-hover:shadow-[0_0_16px_rgba(19,214,233,0.9)] transition-shadow" />
-          </a>
-
-          {/* Navigation Links — Centered in Middle */}
-          <div className="sm:absolute sm:left-1/2 sm:-translate-x-1/2 flex items-center justify-center">
-            <div
-              className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full backdrop-blur-lg overflow-x-auto max-w-full scrollbar-none"
-              style={{
-                backgroundColor: "rgba(17, 25, 40, 0.45)",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                boxShadow:
-                  "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
-              }}
+          <div className="relative z-30 w-full h-full flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
+            {/* Logo */}
+            <a
+              href="#"
+              className="group flex items-center gap-1.5 sm:gap-2 font-bold text-base sm:text-xl md:text-2xl tracking-wide text-foreground hover:opacity-90 transition-opacity shrink-0"
             >
-              {navLinks.map((tab) => {
-                const isActive = activeTab === tab;
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className="relative px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300 whitespace-nowrap"
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-active-pill"
-                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                        className="absolute inset-0 rounded-full"
-                        style={{
-                          backgroundColor: "rgba(19, 214, 233, 0.9)",
-                          border: "1px solid rgba(19, 214, 233, 0.55)",
-                          boxShadow:
-                            "0 0 16px rgba(19,214,233,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2)",
-                        }}
-                      />
-                    )}
-                    <span
-                      className={`relative z-10 ${isActive
-                        ? "text-black"
-                        : "text-muted-foreground hover:text-[#13D6E9]"
-                        }`}
+              <span className="sm:hidden">Hriday</span>
+              <span className="hidden sm:inline">Hriday Debnath</span>
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#13D6E9] inline-block self-center shadow-[0_0_10px_rgba(19,214,233,0.7)] group-hover:shadow-[0_0_16px_rgba(19,214,233,0.9)] transition-shadow" />
+            </a>
+
+            {/* Navigation Links — Centered in Middle */}
+            <div className="sm:absolute sm:left-1/2 sm:-translate-x-1/2 flex items-center justify-center">
+              <div
+                className="flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded-full backdrop-blur-lg overflow-x-auto max-w-full scrollbar-none"
+                style={{
+                  backgroundColor: "rgba(17, 25, 40, 0.45)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  boxShadow:
+                    "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
+                }}
+              >
+                {navLinks.map((tab) => {
+                  const isActive = activeTab === tab;
+                  return (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className="relative px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300 whitespace-nowrap"
                     >
-                      {tab}
-                    </span>
-                  </button>
-                );
-              })}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-active-pill"
+                          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            backgroundColor: "rgba(19, 214, 233, 0.9)",
+                            border: "1px solid rgba(19, 214, 233, 0.55)",
+                            boxShadow:
+                              "0 0 16px rgba(19,214,233,0.25), inset 0 1px 0 0 rgba(255,255,255,0.2)",
+                          }}
+                        />
+                      )}
+                      <span
+                        className={`relative z-10 ${isActive
+                          ? "text-black"
+                          : "text-muted-foreground hover:text-[#13D6E9]"
+                          }`}
+                      >
+                        {tab}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Language Switcher Pill */}
+            <div className="relative shrink-0">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-1 sm:gap-1.5 text-[#13D6E9] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
+                style={{
+                  backgroundColor: "rgba(17, 25, 40, 0.45)",
+                  border: "1px solid rgba(19, 214, 233, 0.35)",
+                  boxShadow:
+                    "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
+                }}
+              >
+                <span className="sm:hidden">🌐</span>
+                <span className="hidden sm:inline">🌐 {lang}</span>
+                <span
+                  className={`text-[10px] opacity-80 transition-transform duration-300 hidden sm:inline ${isLangOpen ? "rotate-180" : ""
+                    }`}
+                >
+                  ▼
+                </span>
+              </button>
+
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 mt-3 w-36 rounded-2xl overflow-hidden py-1.5 z-50"
+                    style={{
+                      backdropFilter: "blur(24px) saturate(190%)",
+                      WebkitBackdropFilter: "blur(24px) saturate(190%)",
+                      backgroundColor: "rgba(17, 25, 40, 0.85)",
+                      border: "1px solid rgba(255, 255, 255, 0.12)",
+                      boxShadow:
+                        "0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 0 rgba(255,255,255,0.14)",
+                    }}
+                  >
+                    {languages.map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => {
+                          setLang(l);
+                          setIsLangOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#13D6E9]/10 ${lang === l
+                          ? "font-bold text-[#13D6E9]"
+                          : "text-muted-foreground hover:text-[#13D6E9]"
+                          }`}
+                      >
+                        {l}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
-
-          {/* Language Switcher Pill — glass */}
-          <div className="relative shrink-0 z-10">
-            <button
-              onClick={() => setIsLangOpen(!isLangOpen)}
-              className="flex items-center gap-1 sm:gap-1.5 text-[#13D6E9] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
-              style={{
-                backgroundColor: "rgba(17, 25, 40, 0.45)",
-                border: "1px solid rgba(19, 214, 233, 0.35)",
-                boxShadow:
-                  "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
-              }}
-            >
-              <span className="sm:hidden">🌐</span>
-              <span className="hidden sm:inline">🌐 {lang}</span>
-              <span
-                className={`text-[10px] opacity-80 transition-transform duration-300 hidden sm:inline ${isLangOpen ? "rotate-180" : ""
-                  }`}
-              >
-                ▼
-              </span>
-            </button>
-
-            <AnimatePresence>
-              {isLangOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-3 w-36 rounded-2xl overflow-hidden py-1.5 z-50"
-                  style={{
-                    backdropFilter: "blur(24px) saturate(190%)",
-                    WebkitBackdropFilter: "blur(24px) saturate(190%)",
-                    backgroundColor: "rgba(17, 25, 40, 0.75)",
-                    border: "1px solid rgba(255, 255, 255, 0.12)",
-                    boxShadow:
-                      "0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 0 rgba(255,255,255,0.14)",
-                  }}
-                >
-                  {languages.map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => {
-                        setLang(l);
-                        setIsLangOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#13D6E9]/10 ${lang === l
-                        ? "font-bold text-[#13D6E9]"
-                        : "text-muted-foreground hover:text-[#13D6E9]"
-                        }`}
-                    >
-                      {l}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
+        </LiquidGlassCard>
       </motion.nav>
 
       <div
@@ -329,29 +323,37 @@ const Hero = () => {
           variants={itemVariants}
           className="w-full pb-10 sm:pb-14 md:pb-16"
         >
-          <div className="w-full grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20 rounded-3xl sm:rounded-full bg-background-900/50 backdrop-blur-lg shadow-[0_8px_40px_rgba(0,0,0,0.35),inset_0_1px_0_0_rgba(7,88,104,0.25)] px-5 sm:px-8 md:px-12 py-6 sm:py-6 md:py-4">
-            {stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-2.5 sm:gap-3.5 md:gap-5 text-left justify-center md:justify-start"
-              >
-                <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
-                  <CountUp
-                    start={0}
-                    end={stat.value}
-                    duration={2.5}
-                    useEasing={true}
-                    enableScrollSpy
-                    scrollSpyOnce
-                  />
-                  {stat.suffix}
-                </span>
-                <span className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight max-w-[72px] sm:max-w-[100px] uppercase tracking-wider font-semibold font-mono">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+          <LiquidGlassCard
+            glowIntensity="sm"
+            shadowIntensity="sm"
+            blurIntensity="xl"
+            draggable={false}
+            className="w-full px-5 sm:px-8 md:px-12 py-6 sm:py-6 md:py-4"
+          >
+            <div className="relative z-30 w-full grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20">
+              {stats.map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2.5 sm:gap-3.5 md:gap-5 text-left justify-center md:justify-start"
+                >
+                  <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
+                    <CountUp
+                      start={0}
+                      end={stat.value}
+                      duration={2.5}
+                      useEasing={true}
+                      enableScrollSpy
+                      scrollSpyOnce
+                    />
+                    {stat.suffix}
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight max-w-[72px] sm:max-w-[100px] uppercase tracking-wider font-semibold font-mono">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </LiquidGlassCard>
         </motion.div>
       </div>
     </>
