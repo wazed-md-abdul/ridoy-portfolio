@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { Globe, ChevronDown, Check } from "lucide-react";
 import CountUp from "react-countup";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { MeshGradientBackground } from "./ui/mesh-gradient";
@@ -12,9 +13,41 @@ const Hero = () => {
   const [activeTab, setActiveTab] = useState("Professional");
   const [lang, setLang] = useState("English");
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   const navLinks = ["Professional", "Personal", "Contact"];
-  const languages = ["English", "Mongolian", "Spanish"];
+  const languages = [
+    { label: "English", nativeName: "English", code: "english", flag: "🇬🇧", short: "EN" },
+    { label: "Italian", nativeName: "Italiano", code: "italian", flag: "🇮🇹", short: "IT" },
+    { label: "Bangla", nativeName: "বাংলা", code: "bengali", flag: "🇧🇩", short: "BN" },
+  ];
+
+  const currentLang = languages.find((l) => l.label === lang) || languages[0];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsLangOpen(false);
+      }
+    };
+    if (isLangOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLangOpen]);
+
+  const handleLanguageChange = (l: { label: string; code: string }) => {
+    setLang(l.label);
+    setIsLangOpen(false);
+    if (typeof window !== "undefined" && (window as any).translate) {
+      (window as any).translate.changeLanguage(l.code);
+    }
+  };
 
   const socials = [
     { name: "Facebook", icon: FaFacebookF, url: "https://facebook.com" },
@@ -126,60 +159,85 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Language Switcher Pill */}
-            <div className="relative shrink-0">
-              <button
+            {/* Modern Animated Language Switcher Pill */}
+            <div className="relative shrink-0" ref={langDropdownRef}>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1 sm:gap-1.5 text-[#13D6E9] active:scale-95 transition-all duration-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium backdrop-blur-lg"
-                style={{
-                  backgroundColor: "rgba(17, 25, 40, 0.45)",
-                  border: "1px solid rgba(19, 214, 233, 0.35)",
-                  boxShadow:
-                    "0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 0 rgba(7,88,104,0.25)",
-                }}
+                className="group relative flex items-center gap-1.5 sm:gap-2 text-[#13D6E9] px-2.5 py-1.5 sm:px-3 sm:py-1.5 md:px-3.5 md:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-medium backdrop-blur-xl transition-all duration-300 border border-[#13D6E9]/40 bg-black/40 hover:bg-[#13D6E9]/10 shadow-[0_4px_20px_rgba(0,0,0,0.35),0_0_12px_rgba(19,214,233,0.15)] hover:border-[#13D6E9] hover:shadow-[0_0_18px_rgba(19,214,233,0.35)]"
               >
-                <span className="sm:hidden">🌐</span>
-                <span className="hidden sm:inline">🌐 {lang}</span>
-                <span
-                  className={`text-[10px] opacity-80 transition-transform duration-300 hidden sm:inline ${isLangOpen ? "rotate-180" : ""
-                    }`}
-                >
-                  ▼
+                {/* Glowing & rotating animated globe */}
+                <span className="relative flex items-center justify-center">
+                  <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#13D6E9] transition-transform duration-500 group-hover:rotate-45" />
+                  <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#13D6E9] shadow-[0_0_6px_#13D6E9] animate-pulse" />
                 </span>
-              </button>
+
+                <span className="hidden sm:inline-flex items-center gap-1.5 font-mono">
+                  <span>{currentLang.flag}</span>
+                  <span className="font-semibold text-foreground group-hover:text-[#13D6E9] transition-colors">{currentLang.nativeName}</span>
+                </span>
+                <span className="sm:hidden font-mono font-bold text-foreground group-hover:text-[#13D6E9] transition-colors">
+                  {currentLang.flag} {currentLang.short}
+                </span>
+
+                <ChevronDown
+                  className={`w-3 h-3 text-[#13D6E9]/80 transition-transform duration-300 ${
+                    isLangOpen ? "rotate-180 text-[#13D6E9]" : "group-hover:translate-y-0.5"
+                  }`}
+                />
+              </motion.button>
 
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.92 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-3 w-36 rounded-2xl overflow-hidden py-1.5 z-50"
-                    style={{
-                      backdropFilter: "blur(24px) saturate(190%)",
-                      WebkitBackdropFilter: "blur(24px) saturate(190%)",
-                      backgroundColor: "rgba(17, 25, 40, 0.85)",
-                      border: "1px solid rgba(255, 255, 255, 0.12)",
-                      boxShadow:
-                        "0 12px 40px rgba(0,0,0,0.45), inset 0 1px 0 0 rgba(255,255,255,0.14)",
-                    }}
+                    exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                    className="absolute right-0 mt-3 w-48 rounded-2xl overflow-hidden p-1.5 z-50 border border-[#13D6E9]/35 bg-[#020617]/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_24px_rgba(19,214,233,0.2)] font-mono"
                   >
-                    {languages.map((l) => (
-                      <button
-                        key={l}
-                        onClick={() => {
-                          setLang(l);
-                          setIsLangOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-[#13D6E9]/10 ${lang === l
-                          ? "font-bold text-[#13D6E9]"
-                          : "text-muted-foreground hover:text-[#13D6E9]"
-                          }`}
-                      >
-                        {l}
-                      </button>
-                    ))}
+                    <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#13D6E9]/80 border-b border-white/10 mb-1 flex items-center justify-between">
+                      <span>Language</span>
+                      <span className="text-[8px] opacity-60">AUTO TRANSLATE</span>
+                    </div>
+
+                    <div className="space-y-1">
+                      {languages.map((l) => {
+                        const isSelected = lang === l.label;
+                        return (
+                          <motion.button
+                            key={l.code}
+                            whileHover={{ x: 2 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => handleLanguageChange(l)}
+                            className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all duration-200 ${
+                              isSelected
+                                ? "bg-[#13D6E9]/15 text-[#13D6E9] font-bold border border-[#13D6E9]/50 shadow-[0_0_12px_rgba(19,214,233,0.15)]"
+                                : "text-gray-300 hover:text-white hover:bg-white/5 border border-transparent"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className="text-base leading-none">{l.flag}</span>
+                              <div className="flex flex-col text-left leading-tight">
+                                <span className="font-semibold">{l.nativeName}</span>
+                                <span className="text-[10px] text-muted-foreground">{l.label}</span>
+                              </div>
+                            </div>
+
+                            {isSelected && (
+                              <motion.span
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                className="w-4 h-4 rounded-full bg-[#13D6E9] text-black flex items-center justify-center shrink-0 shadow-[0_0_8px_#13D6E9]"
+                              >
+                                <Check className="w-2.5 h-2.5 stroke-[3]" />
+                              </motion.span>
+                            )}
+                          </motion.button>
+                        );
+                      })}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -327,16 +385,17 @@ const Hero = () => {
             glowIntensity="sm"
             shadowIntensity="sm"
             blurIntensity="xl"
+            borderRadius="32px"
             draggable={false}
-            className="w-full px-5 sm:px-8 md:px-12 py-6 sm:py-6 md:py-4"
+            className="w-full px-4 sm:px-6 md:px-8 py-6 sm:py-7 md:py-6"
           >
-            <div className="relative z-30 w-full grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20">
+            <div className="relative z-30 w-full grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 lg:gap-8 items-center">
               {stats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 sm:gap-3.5 md:gap-5 text-left justify-center md:justify-start"
+                  className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-left justify-center md:justify-center"
                 >
-                  <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground tracking-[-0.02em] leading-none font-mono">
+                  <span className="notranslate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none font-mono shrink-0">
                     <CountUp
                       start={0}
                       end={stat.value}
@@ -347,7 +406,7 @@ const Hero = () => {
                     />
                     {stat.suffix}
                   </span>
-                  <span className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight max-w-[72px] sm:max-w-[100px] uppercase tracking-wider font-semibold font-mono">
+                  <span className="text-[10px] sm:text-xs text-muted-foreground leading-snug uppercase tracking-wider font-semibold font-mono max-w-[140px]">
                     {stat.label}
                   </span>
                 </div>

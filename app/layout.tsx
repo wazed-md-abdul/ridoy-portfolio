@@ -3,12 +3,13 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "./provider";
+import TranslateProvider from "@/components/TranslateProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adrian's Portfolio",
-  description: "Modern & Minimal JS Mastery Portfolio",
+  title: "Hriday's Portfolio",
+  description: "Modern & Minimal Portfolio",
 };
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <TranslateProvider />
       </body>
     </html>
   );
