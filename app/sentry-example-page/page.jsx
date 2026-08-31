@@ -1,15 +1,10 @@
 "use client";
 
-import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
 
 export default function Page() {
   return (
     <div>
-      <Head>
-        <title>Sentry Onboarding</title>
-        <meta name="description" content="Test Sentry for your Next.js app!" />
-      </Head>
 
       <main
         style={{

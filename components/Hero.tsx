@@ -197,7 +197,7 @@ const Hero: React.FC<HeroProps> = ({
                 </span>
 
                 <span className="hidden sm:inline-flex items-center gap-1.5 font-mono">
-                  <span>{currentLang.flag}</span>
+
                   <span className="font-semibold text-foreground group-hover:text-[#13D6E9] transition-colors">{currentLang.nativeName}</span>
                 </span>
                 <span className="sm:hidden font-mono font-bold text-foreground group-hover:text-[#13D6E9] transition-colors">
@@ -205,9 +205,8 @@ const Hero: React.FC<HeroProps> = ({
                 </span>
 
                 <ChevronDown
-                  className={`w-3 h-3 text-[#13D6E9]/80 transition-transform duration-300 ${
-                    isLangOpen ? "rotate-180 text-[#13D6E9]" : "group-hover:translate-y-0.5"
-                  }`}
+                  className={`w-3 h-3 text-[#13D6E9]/80 transition-transform duration-300 ${isLangOpen ? "rotate-180 text-[#13D6E9]" : "group-hover:translate-y-0.5"
+                    }`}
                 />
               </motion.button>
 
@@ -222,7 +221,6 @@ const Hero: React.FC<HeroProps> = ({
                   >
                     <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#13D6E9]/80 border-b border-white/10 mb-1 flex items-center justify-between">
                       <span>Language</span>
-                      <span className="text-[8px] opacity-60">AUTO TRANSLATE</span>
                     </div>
 
                     <div className="space-y-1">
@@ -234,17 +232,14 @@ const Hero: React.FC<HeroProps> = ({
                             whileHover={{ x: 2 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handleLanguageChange(l)}
-                            className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all duration-200 ${
-                              isSelected
-                                ? "bg-[#13D6E9]/15 text-[#13D6E9] font-bold border border-[#13D6E9]/50 shadow-[0_0_12px_rgba(19,214,233,0.15)]"
-                                : "text-gray-300 hover:text-white hover:bg-white/5 border border-transparent"
-                            }`}
+                            className={`relative w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-all duration-200 ${isSelected
+                              ? "bg-[#13D6E9]/15 text-[#13D6E9] font-bold border border-[#13D6E9]/50 shadow-[0_0_12px_rgba(19,214,233,0.15)]"
+                              : "text-gray-300 hover:text-white hover:bg-white/5 border border-transparent"
+                              }`}
                           >
                             <div className="flex items-center gap-2.5">
-                              <span className="text-base leading-none">{l.flag}</span>
                               <div className="flex flex-col text-left leading-tight">
                                 <span className="font-semibold">{l.nativeName}</span>
-                                <span className="text-[10px] text-muted-foreground">{l.label}</span>
                               </div>
                             </div>
 
@@ -283,162 +278,162 @@ const Hero: React.FC<HeroProps> = ({
             />
           </div>
 
-        {/* Background overlay for depth */}
-        <div className="absolute inset-0 bg-[#010307]/50 -z-20 pointer-events-none" />
+          {/* Background overlay for depth */}
+          <div className="absolute inset-0 bg-[#010307]/50 -z-20 pointer-events-none" />
 
-        {/* Fade overlay - edges */}
-        <div
-          className="absolute inset-0 -z-20 pointer-events-none"
-          style={{
-            background: `
+          {/* Fade overlay - edges */}
+          <div
+            className="absolute inset-0 -z-20 pointer-events-none"
+            style={{
+              background: `
               radial-gradient(ellipse at center, transparent 0%, rgba(1, 3, 7, 0.4) 40%, rgba(1, 3, 7, 0.85) 100%)
             `,
-          }}
-        />
+            }}
+          />
 
-        {/* Gradient blur border glow */}
-        <div
-          className="absolute inset-0 -z-20 pointer-events-none"
-          style={{
-            background: `
+          {/* Gradient blur border glow */}
+          <div
+            className="absolute inset-0 -z-20 pointer-events-none"
+            style={{
+              background: `
               linear-gradient(to right, rgba(1, 3, 7, 0.85) 0%, transparent 12%, transparent 88%, rgba(1, 3, 7, 0.85) 100%),
               linear-gradient(to bottom, rgba(1, 3, 7, 0.85) 0%, transparent 12%, transparent 88%, rgba(1, 3, 7, 0.85) 100%)
             `,
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
-          }}
-        />
+              backdropFilter: 'blur(40px)',
+              WebkitBackdropFilter: 'blur(40px)',
+            }}
+          />
 
-        {/* HERO CONTENT */}
-        <main className="flex-grow flex items-center w-full pt-28 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:py-20 lg:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-4 lg:gap-2 items-center w-full">
-            {/* LEFT COLUMN: Texts & Stats */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="md:col-span-6 lg:col-span-5 flex flex-col justify-center space-y-5 sm:space-y-7 md:space-y-8 lg:space-y-9 text-center md:text-left items-center md:items-start order-2 md:order-1"
-            >
-              {/* Label */}
-              <motion.span
-                variants={itemVariants}
-                className="text-primary text-xs sm:text-sm font-bold uppercase tracking-[0.15em]"
-              >
-                Fullstack Developer
-              </motion.span>
-
-              {/* Heading */}
-              <motion.div variants={itemVariants} className="space-y-1 sm:space-y-2">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold tracking-tight leading-none text-foreground whitespace-nowrap">
-                  Hello I&apos;m
-                </h1>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold tracking-tight text-[#13D6E9] leading-none mt-1 whitespace-nowrap">
-                  Hriday Debnath
-                </h2>
-              </motion.div>
-
-              {/* Tagline */}
-              <motion.p
-                variants={itemVariants}
-                className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg max-w-md md:max-w-xl leading-relaxed font-mono px-2 sm:px-0"
-              >
-                Pragmatic, delivery-oriented | Fintech, Cloud & AI Engineering | Mongolia
-              </motion.p>
-
-              {/* CTA & Socials Row */}
+          {/* HERO CONTENT */}
+          <main className="flex-grow flex items-center w-full pt-28 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:py-20 lg:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-4 lg:gap-2 items-center w-full">
+              {/* LEFT COLUMN: Texts & Stats */}
               <motion.div
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-1 sm:pt-2 w-full sm:w-auto justify-center md:justify-start"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="md:col-span-6 lg:col-span-5 flex flex-col justify-center space-y-5 sm:space-y-7 md:space-y-8 lg:space-y-9 text-center md:text-left items-center md:items-start order-2 md:order-1"
               >
-                {/* CTA Button */}
-                <a
-                  href="#cv"
-                  className="group relative inline-flex items-center justify-center text-[#13D6E9] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
+                {/* Label */}
+                <motion.span
+                  variants={itemVariants}
+                  className="text-primary text-xs sm:text-sm font-bold uppercase tracking-[0.15em]"
                 >
-                  <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
-                  <span>VIEW CV &gt;</span>
-                </a>
+                  Fullstack Developer
+                </motion.span>
 
-                {/* Social Icons */}
-                <div className="flex items-center justify-center md:justify-start gap-2.5 sm:gap-3">
-                  {socials.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${social.name}`}
-                      className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#13D6E9] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
-                    >
-                      <social.icon className="w-4 h-4" />
-                    </a>
-                  ))}
+                {/* Heading */}
+                <motion.div variants={itemVariants} className="space-y-1 sm:space-y-2">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold tracking-tight leading-none text-foreground whitespace-nowrap">
+                    Hello I&apos;m
+                  </h1>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold tracking-tight text-[#13D6E9] leading-none mt-1 whitespace-nowrap">
+                    Hriday Debnath
+                  </h2>
+                </motion.div>
+
+                {/* Tagline */}
+                <motion.p
+                  variants={itemVariants}
+                  className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg max-w-md md:max-w-xl leading-relaxed font-mono px-2 sm:px-0"
+                >
+                  Pragmatic, delivery-oriented | Fintech, Cloud & AI Engineering | Mongolia
+                </motion.p>
+
+                {/* CTA & Socials Row */}
+                <motion.div
+                  variants={itemVariants}
+                  className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-1 sm:pt-2 w-full sm:w-auto justify-center md:justify-start"
+                >
+                  {/* CTA Button */}
+                  <a
+                    href="#cv"
+                    className="group relative inline-flex items-center justify-center text-[#13D6E9] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
+                  >
+                    <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
+                    <span>VIEW CV &gt;</span>
+                  </a>
+
+                  {/* Social Icons */}
+                  <div className="flex items-center justify-center md:justify-start gap-2.5 sm:gap-3">
+                    {socials.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${social.name}`}
+                        className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] text-[#13D6E9] hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-90 transition-all duration-300"
+                      >
+                        <social.icon className="w-4 h-4" />
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* RIGHT COLUMN: 3D Holographic WebM Portrait */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end items-center relative py-2 sm:py-4 md:py-0 order-1 md:order-2 overflow-visible"
+              >
+                <div
+                  className="relative flex items-center justify-center overflow-visible"
+                  style={{
+                    width: "min(90vw, 580px)",
+                    height: "min(90vw, 580px)",
+                  }}
+                >
+                  <BlendedVideo
+                    src="/Final.webm"
+                    className="w-full h-full object-contain scale-115 md:scale-125 lg:scale-130 origin-center"
+                  />
                 </div>
               </motion.div>
-            </motion.div>
-
-            {/* RIGHT COLUMN: 3D Holographic WebM Portrait */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-              className="md:col-span-6 lg:col-span-7 flex justify-center md:justify-end items-center relative py-2 sm:py-4 md:py-0 order-1 md:order-2 overflow-visible"
-            >
-              <div
-                className="relative flex items-center justify-center overflow-visible"
-                style={{
-                  width: "min(90vw, 580px)",
-                  height: "min(90vw, 580px)",
-                }}
-              >
-                <BlendedVideo
-                  src="/Final.webm"
-                  className="w-full h-full object-contain scale-115 md:scale-125 lg:scale-130 origin-center"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </main>
-
-        {/* Stats Row */}
-        <motion.div
-          variants={itemVariants}
-          className="w-full pb-10 sm:pb-14 md:pb-16"
-        >
-          <LiquidGlassCard
-            glowIntensity="sm"
-            shadowIntensity="sm"
-            blurIntensity="xl"
-            borderRadius="32px"
-            draggable={false}
-            className="w-full px-4 sm:px-6 md:px-8 py-6 sm:py-7 md:py-6"
-          >
-            <div className="relative z-30 w-full grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 lg:gap-8 items-center">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-left justify-center md:justify-center"
-                >
-                  <span className="notranslate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none font-mono shrink-0">
-                    <CountUp
-                      start={0}
-                      end={stat.value}
-                      duration={2.5}
-                      useEasing={true}
-                      enableScrollSpy
-                      scrollSpyOnce
-                    />
-                    {stat.suffix}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground leading-snug uppercase tracking-wider font-semibold font-mono max-w-[140px]">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
             </div>
-          </LiquidGlassCard>
-        </motion.div>
-      </div>
+          </main>
+
+          {/* Stats Row */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full pb-10 sm:pb-14 md:pb-16"
+          >
+            <LiquidGlassCard
+              glowIntensity="sm"
+              shadowIntensity="sm"
+              blurIntensity="xl"
+              borderRadius="32px"
+              draggable={false}
+              className="w-full px-4 sm:px-6 md:px-8 py-6 sm:py-7 md:py-6"
+            >
+              <div className="relative z-30 w-full grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 lg:gap-8 items-center">
+                {stats.map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 text-left justify-center md:justify-center"
+                  >
+                    <span className="notranslate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight leading-none font-mono shrink-0">
+                      <CountUp
+                        start={0}
+                        end={stat.value}
+                        duration={2.5}
+                        useEasing={true}
+                        enableScrollSpy
+                        scrollSpyOnce
+                      />
+                      {stat.suffix}
+                    </span>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground leading-snug uppercase tracking-wider font-semibold font-mono max-w-[140px]">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </LiquidGlassCard>
+          </motion.div>
+        </div>
       )}
     </>
   );
