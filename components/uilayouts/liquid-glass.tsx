@@ -149,7 +149,7 @@ export const LiquidGlassCard = ({
       </svg>
       <MotionComponent
         className={cn(
-          `relative ${draggable ? 'cursor-grab active:cursor-grabbing' : ''} ${expandable ? 'cursor-pointer' : ''}`,
+          'relative',
           className
         )}
         style={{

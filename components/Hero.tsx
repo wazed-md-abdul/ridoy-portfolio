@@ -9,8 +9,21 @@ import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { MeshGradientBackground } from "./ui/mesh-gradient";
 import BlendedVideo from "./BlendedVideo";
 
-const Hero = () => {
-  const [activeTab, setActiveTab] = useState("Professional");
+interface HeroProps {
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
+  initialTab?: string;
+}
+
+const Hero: React.FC<HeroProps> = ({
+  activeTab: propActiveTab,
+  setActiveTab: propSetActiveTab,
+  initialTab = "Professional",
+}) => {
+  const [internalTab, setInternalTab] = useState(initialTab);
+  const activeTab = propActiveTab !== undefined ? propActiveTab : internalTab;
+  const setActiveTab = propSetActiveTab || setInternalTab;
+
   const [lang, setLang] = useState("English");
   const [isLangOpen, setIsLangOpen] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
@@ -23,6 +36,16 @@ const Hero = () => {
   ];
 
   const currentLang = languages.find((l) => l.label === lang) || languages[0];
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    if (tab === "Contact") {
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        contactEl.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -129,7 +152,7 @@ const Hero = () => {
                   return (
                     <button
                       key={tab}
-                      onClick={() => setActiveTab(tab)}
+                      onClick={() => handleTabClick(tab)}
                       className="relative px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide rounded-full transition-colors duration-300 whitespace-nowrap"
                     >
                       {isActive && (
@@ -246,18 +269,19 @@ const Hero = () => {
         </LiquidGlassCard>
       </motion.nav>
 
-      <div
-        className="isolate relative w-full min-h-screen flex flex-col font-mono text-foreground bg-[#010307]"
-        style={{ backgroundColor: "#010307" }}
-      >
-        {/* Mesh gradient animated background */}
-        <div className="absolute inset-0 -z-10">
-          <MeshGradientBackground
-            colors={["#075868", "#13D6E9", "#06b6d4", "#2563eb", "#7c3aed"]}
-            speed={1.2}
-            backgroundColor="#010307"
-          />
-        </div>
+      {activeTab !== "Personal" && (
+        <div
+          className="isolate relative w-full min-h-screen flex flex-col font-mono text-foreground bg-[#010307]"
+          style={{ backgroundColor: "#010307" }}
+        >
+          {/* Mesh gradient animated background */}
+          <div className="absolute inset-0 -z-10">
+            <MeshGradientBackground
+              colors={["#075868", "#13D6E9", "#06b6d4", "#2563eb", "#7c3aed"]}
+              speed={1.2}
+              backgroundColor="#010307"
+            />
+          </div>
 
         {/* Background overlay for depth */}
         <div className="absolute inset-0 bg-[#010307]/50 -z-20 pointer-events-none" />
@@ -415,6 +439,7 @@ const Hero = () => {
           </LiquidGlassCard>
         </motion.div>
       </div>
+      )}
     </>
   );
 };
