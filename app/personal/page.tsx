@@ -12,6 +12,7 @@ export default function PersonalPage() {
       <div className="max-w-7xl w-full mx-auto">
         <Hero activeTab={activeTab} setActiveTab={setActiveTab} initialTab="Personal" />
         <PersonalView />
+
       </div>
     </main>
   );
