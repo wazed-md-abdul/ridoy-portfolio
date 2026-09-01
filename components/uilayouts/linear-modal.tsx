@@ -66,7 +66,7 @@ type DialogTriggerProps = {
 };
 
 function DialogTrigger({ children, className, style, triggerRef }: DialogTriggerProps) {
-  const { setIsOpen, isOpen, uniqueId } = useDialog();
+  const { setIsOpen, isOpen } = useDialog();
 
   const handleClick = useCallback(() => {
     setIsOpen(!isOpen);
@@ -83,9 +83,8 @@ function DialogTrigger({ children, className, style, triggerRef }: DialogTrigger
   );
 
   return (
-    <motion.div
+    <div
       ref={triggerRef}
-      layoutId={`dialog-${uniqueId}`}
       className={cn('relative inline-flex', className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -93,10 +92,9 @@ function DialogTrigger({ children, className, style, triggerRef }: DialogTrigger
       role="button"
       aria-haspopup="dialog"
       aria-expanded={isOpen}
-      aria-controls={`dialog-content-${uniqueId}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -168,7 +166,6 @@ function DialogContent({ children, className, style }: DialogContentProps) {
   return (
     <motion.div
       ref={containerRef}
-      layoutId={`dialog-${uniqueId}`}
       className={cn('overflow-hidden rounded-3xl border border-[#13D6E9]/40 bg-[#04071D] text-white shadow-2xl', className)}
       style={{
         ...style,
@@ -178,14 +175,12 @@ function DialogContent({ children, className, style }: DialogContentProps) {
       aria-modal="true"
       aria-labelledby={`dialog-title-${uniqueId}`}
       aria-describedby={`dialog-description-${uniqueId}`}
-      initial={{ scale: 0.95, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.95, opacity: 0 }}
+      initial={{ scale: 0.94, opacity: 0, y: 16 }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
+      exit={{ scale: 0.96, opacity: 0, y: 10 }}
       transition={{
-        type: 'spring',
-        damping: 26,
-        stiffness: 320,
-        mass: 0.8,
+        duration: 0.22,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}
@@ -222,7 +217,7 @@ function DialogContainer({ children, className, overlayClassName }: DialogContai
   if (!mounted) return null;
 
   return createPortal(
-    <AnimatePresence initial={false} mode="wait">
+    <AnimatePresence mode="wait">
       {isOpen && (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
           <motion.div
@@ -236,7 +231,7 @@ function DialogContainer({ children, className, overlayClassName }: DialogContai
             exit={{ opacity: 0 }}
             transition={{
               duration: 0.2,
-              ease: [0.4, 0.0, 0.4, 1],
+              ease: 'easeInOut',
             }}
             onClick={() => setIsOpen(false)}
           />
@@ -260,17 +255,10 @@ type DialogTitleProps = {
 };
 
 function DialogTitle({ children, className, style }: DialogTitleProps) {
-  const { uniqueId } = useDialog();
-
   return (
-    <motion.h2
-      layoutId={`dialog-title-container-${uniqueId}`}
-      className={className}
-      style={style}
-      layout
-    >
+    <h2 className={className} style={style}>
       {children}
-    </motion.h2>
+    </h2>
   );
 }
 
@@ -281,16 +269,10 @@ type DialogSubtitleProps = {
 };
 
 function DialogSubtitle({ children, className, style }: DialogSubtitleProps) {
-  const { uniqueId } = useDialog();
-
   return (
-    <motion.div
-      layoutId={`dialog-subtitle-container-${uniqueId}`}
-      className={className}
-      style={style}
-    >
+    <div className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -309,23 +291,17 @@ function DialogDescription({
   children,
   className,
   variants,
-  disableLayoutAnimation,
 }: DialogDescriptionProps) {
   const { uniqueId } = useDialog();
 
   return (
-    <motion.div
+    <div
       key={`dialog-description-${uniqueId}`}
-      layoutId={disableLayoutAnimation ? undefined : `dialog-description-content-${uniqueId}`}
-      variants={variants}
       className={className}
-      initial="initial"
-      animate="animate"
-      exit="exit"
       id={`dialog-description-${uniqueId}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -337,14 +313,11 @@ type DialogImageProps = {
 };
 
 function DialogImage({ src, alt, className, style }: DialogImageProps) {
-  const { uniqueId } = useDialog();
-
   return (
-    <motion.img
+    <img
       src={src}
       alt={alt}
       className={cn(className)}
-      layoutId={`dialog-img-${uniqueId}`}
       style={style}
     />
   );
@@ -360,27 +333,22 @@ type DialogCloseProps = {
   };
 };
 
-function DialogClose({ children, className, variants }: DialogCloseProps) {
-  const { setIsOpen, uniqueId } = useDialog();
+function DialogClose({ children, className }: DialogCloseProps) {
+  const { setIsOpen } = useDialog();
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, [setIsOpen]);
 
   return (
-    <motion.button
+    <button
       onClick={handleClose}
       type="button"
       aria-label="Close dialog"
-      key={`dialog-close-${uniqueId}`}
-      className={cn('absolute right-6 top-6 text-white/80 hover:text-white transition-colors', className)}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={variants}
+      className={cn('absolute right-6 top-6 text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10', className)}
     >
       {children || <X size={20} />}
-    </motion.button>
+    </button>
   );
 }
 
