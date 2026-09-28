@@ -69,38 +69,111 @@ export const gridItems = [
   },
 ];
 
-export const projects = [
+export interface ProjectItem {
+  id: number;
+  title: string;
+  des: string;
+  img: string;
+  iconLists: string[];
+  link: string;
+  category?: string;
+  role?: string;
+  year?: string;
+  video?: string;
+  pictures?: string[];
+  overview?: string;
+  features?: string[];
+  client?: string;
+}
+
+export const projects: ProjectItem[] = [
   {
     id: 1,
     title: "3D Solar System Planets to Explore",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
+    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js and real-time celestial physics.",
     img: "/p1.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-    link: "/ui.earth.com",
+    link: "https://github.com",
+    category: "3D Simulation & WebGL",
+    role: "Lead 3D & UI/UX Developer",
+    year: "2024",
+    video: "/Final.webm",
+    pictures: ["/p1.svg", "/b1.svg", "/grid.svg"],
+    overview:
+      "An interactive educational WebGL application rendering high-fidelity astronomical bodies in real-time 3D. Users can rotate, zoom, and explore orbital trajectories with silky-smooth 60fps performance across desktop and mobile devices.",
+    features: [
+      "Real-time Three.js shaders with planetary atmospheric scattering",
+      "Interactive physics-based orbital mechanics and dynamic lighting",
+      "Responsive tactile UI with spatial camera tweening",
+      "Optimized geometry LODs for smooth 60fps mobile execution",
+    ],
+    client: "AstroEd Global",
   },
   {
     id: 2,
     title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
+    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends with secure, low-latency streaming.",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "/ui.yoom.com",
+    link: "https://github.com",
+    category: "Full Stack SaaS & WebRTC",
+    role: "Fullstack Product Designer",
+    year: "2024",
+    video: "/Final.webm",
+    pictures: ["/p2.svg", "/b5.svg", "/bg.png"],
+    overview:
+      "A modern, enterprise-grade video conferencing platform built on Next.js 14 and Stream SDK. Features real-time screen sharing, encrypted video breakout rooms, cloud recording, and an intuitive glassmorphic dashboard.",
+    features: [
+      "Sub-second latency video calls powered by WebRTC & Stream API",
+      "Clerk enterprise authentication with role-based access controls",
+      "Instant meeting scheduling with calendar synchronization",
+      "Floating picture-in-picture mode and interactive meeting notes",
+    ],
+    client: "Yoom Connect",
   },
   {
     id: 3,
     title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
+    des: "A REAL Software-as-a-Service app with AI generative features and a payments and credits system using the latest modern tech stack.",
     img: "/p3.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "/ui.aiimg.com",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+    link: "https://github.com",
+    category: "AI SaaS & Design Platform",
+    role: "UI/UX & AI Systems Designer",
+    year: "2023",
+    video: "/Final.webm",
+    pictures: ["/p3.svg", "/b4.svg", "/avatar_illustration.png"],
+    overview:
+      "A creative cloud platform empowering creators with generative AI image restoration, background removal, recoloring, and generative fill. Integrated with Stripe subscription tiers and an automated credit deduction ledger.",
+    features: [
+      "Cloudinary AI integration for neural style transfer and content-aware fill",
+      "Stripe payment checkout and recurring customer subscriptions",
+      "Community showcase and downloadable asset license manager",
+      "Dark-mode first responsive canvas editor with history undo/redo",
+    ],
+    client: "ImaginAI Studio",
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
+    title: "Animated Apple iPhone 3D Website",
+    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects for a benchmark product experience.",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "/ui.apple.com",
+    link: "https://github.com",
+    category: "Creative Development & 3D",
+    role: "Creative Technologist & UI Engineer",
+    year: "2024",
+    video: "/Final.webm",
+    pictures: ["/p4.svg", "/p1.svg", "/bg.png"],
+    overview:
+      "A visual masterpiece recreating Apple's flagship product showcase. Features dual 3D phone model synchronization, continuous GSAP ScrollTrigger timeline orchestration, and dynamic color/finish configuration.",
+    features: [
+      "3D Titanium model inspection with custom PBR reflections",
+      "Cinematic camera fly-through sequences tied to scroll velocity",
+      "Dynamic material swapper with realistic metal anisotropic grain",
+      "Cross-browser GPU memory management and asset prefetching",
+    ],
+    client: "Concept Showcase",
   },
 ];
 
