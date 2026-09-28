@@ -82,22 +82,6 @@
     @apply active:outline-none;
   }
 
-  @media (any-hover: hover) and (any-pointer: fine) {
-    *,
-    *::before,
-    *::after,
-    html,
-    body,
-    a,
-    button,
-    input,
-    select,
-    textarea,
-    [role="button"],
-    .cursor-pointer {
-      cursor: none !important;
-    }
-  }
 }
 
 @layer utilities {
