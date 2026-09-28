@@ -27,7 +27,7 @@ export const Preloader_004: React.FC<{
   words?: string[];
   className?: string;
 }> = ({
-  text = "Hriday Debnath",
+  text = "",
   words,
   className = "",
 }) => {
@@ -129,7 +129,7 @@ export const Preloader_004: React.FC<{
 
 
 export const Skiper10: React.FC<Skiper10Props> = ({
-  text = "Hriday Debnath",
+  text = "",
   words,
   duration = 2200,
   onComplete,

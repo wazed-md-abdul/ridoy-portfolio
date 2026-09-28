@@ -207,7 +207,11 @@ export const BentoGridItem = ({
                 asChild
                 className="rounded-xl px-5 py-2.5 text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
               >
-                <a href="#cv-details" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://drive.google.com/file/d/1147u22rJFldBUflJQmCew4Jr38fqj-xc/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span>View CV &gt;</span>
                 </a>
               </RainbowButton>
@@ -242,7 +246,7 @@ export const BentoGridItem = ({
                 onClick={handleCopy}
                 className="w-full sm:w-auto px-6 py-2.5 gap-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
               >
-                <IoCopyOutline className={copied ? "text-[#13D6E9] text-base" : "text-[#72F8F1] text-base"} />
+                <IoCopyOutline className="text-black text-base" />
                 <span>{copied ? "Email is Copied!" : "Copy my email address"}</span>
               </RainbowButton>
             </div>

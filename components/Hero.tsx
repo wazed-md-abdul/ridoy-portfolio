@@ -351,7 +351,11 @@ const Hero: React.FC<HeroProps> = ({
                     asChild
                     className="rounded-full px-7 py-3 text-xs sm:text-sm tracking-wider font-semibold self-center md:self-start sm:self-auto shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
                   >
-                    <a href="#cv">
+                    <a
+                      href="https://drive.google.com/file/d/1147u22rJFldBUflJQmCew4Jr38fqj-xc/view"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       VIEW CV &gt;
                     </a>
                   </RainbowButton>

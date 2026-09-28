@@ -23,8 +23,8 @@ const Home = () => {
             <Education />
             <Grid />
             <RecentProjects />
-            <Clients />
             <Experience />
+            <Clients />
             <Approach />
             <Footer />
           </>

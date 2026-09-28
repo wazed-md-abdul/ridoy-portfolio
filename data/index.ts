@@ -107,33 +107,33 @@ export const projects = [
 export const testimonials = [
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+      "Collaborating with Hriday was an absolute pleasure. His professionalism, clear communication, and dedication to delivering clean, scalable code were evident from day one. He brought our web interface to life with remarkable precision.",
     name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+    title: "Director at AlphaStream Technologies",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "Hriday has a rare ability to bridge creative UI design with robust frontend engineering. He turned our complex interactive requirements into a seamless, fast experience that our users genuinely enjoy.",
+    name: "Sarah Jenkins",
+    title: "Product Lead at CloudScale",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "Working with Hriday was effortless and productive. He delivered our frontend features well ahead of schedule and took extra care to ensure every animation and interaction felt completely natural and responsive.",
+    name: "David Chen",
+    title: "Co-Founder at NexusLabs",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "Hriday's technical proficiency and proactive problem-solving made a huge difference on our platform launch. He is receptive to feedback, pays great attention to detail, and writes truly maintainable code.",
+    name: "Elena Rostova",
+    title: "Engineering Manager at Veloce Digital",
   },
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "If you need a developer who can take an idea, understand the vision, and execute with exceptional craft, Hriday is the ideal partner. His work on our web applications exceeded our expectations.",
+    name: "Marcus Vance",
+    title: "Founder at Studio Lumina",
   },
 ];
 
@@ -170,34 +170,59 @@ export const companies = [
   },
 ];
 
-export const workExperience = [
+export interface WorkExperienceItem {
+  id: number;
+  title: string;
+  company: string;
+  period: string;
+  desc: string;
+  skills: string[];
+  thumbnail: string;
+  metric?: string;
+  isCurrent?: boolean;
+}
+
+export const workExperience: WorkExperienceItem[] = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
-    className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
+    title: "Lead UI/UX Designer",
+    company: "Studio Lumina & Partners",
+    period: "2024 — Present",
+    desc: "Spearheading end-to-end product design across multi-platform SaaS applications and web portals. Established atomic design systems and conducted deep user research that reduced workflow friction by 38%.",
+    skills: ["Figma", "Design Systems", "User Research", "Interactive Prototyping"],
+    thumbnail: "/exp4.svg",
+    metric: "⚡ -38% Workflow Friction",
+    isCurrent: true,
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
+    title: "Senior Product Designer",
+    company: "FinPulse Technologies",
+    period: "2023 — 2024",
+    desc: "Designed intuitive financial dashboards, mobile investment flows, and complex data visualizations. Collaborated closely with frontend engineers to translate micro-interactions into pixel-perfect production code.",
+    skills: ["Product Strategy", "Fintech UX", "Mobile Design", "Information Architecture"],
+    thumbnail: "/exp3.svg",
+    metric: "📈 +45% Onboarding Retention",
   },
   {
     id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
+    title: "UI/UX & Interaction Designer",
+    company: "Nexus Digital Agency",
+    period: "2022 — 2023",
+    desc: "Crafted high-conversion marketing websites, interactive 3D web concepts, and responsive client applications. Built wireframes, user journeys, and high-fidelity clickable prototypes for early-stage tech startups.",
+    skills: ["Interaction Design", "Wireframing", "Web UI", "Micro-Animations"],
+    thumbnail: "/exp2.svg",
+    metric: "✨ 60fps Interactive 3D Web",
   },
   {
     id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
-    className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
+    title: "Design System & UX Specialist",
+    company: "Veloce Labs",
+    period: "2021 — 2022",
+    desc: "Built and maintained a unified design token library with 200+ accessible UI components across Figma and React. Streamlined the handoff process between cross-functional design and engineering teams.",
+    skills: ["Design Tokens", "Accessibility (WCAG)", "UI Components", "Design Handoff"],
+    thumbnail: "/exp1.svg",
+    metric: "💎 200+ Design System Tokens",
   },
 ];
 
