@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(108, 0, 162)",
-  gradientBackgroundEnd = "rgb(0, 17, 82)",
-  firstColor = "18, 113, 255",
-  secondColor = "221, 74, 255",
-  thirdColor = "100, 220, 255",
-  fourthColor = "200, 50, 50",
-  fifthColor = "180, 180, 50",
-  pointerColor = "140, 100, 255",
+  gradientBackgroundStart = "rgb(4, 28, 44)",
+  gradientBackgroundEnd = "rgb(4, 7, 29)",
+  firstColor = "19, 214, 233",
+  secondColor = "7, 88, 104",
+  thirdColor = "114, 248, 241",
+  fourthColor = "6, 182, 212",
+  fifthColor = "37, 99, 235",
+  pointerColor = "19, 214, 233",
   size = "80%",
   blendingValue = "hard-light",
   children,
@@ -56,7 +56,18 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+  }, [
+    gradientBackgroundStart,
+    gradientBackgroundEnd,
+    firstColor,
+    secondColor,
+    thirdColor,
+    fourthColor,
+    fifthColor,
+    pointerColor,
+    size,
+    blendingValue,
+  ]);
 
   useEffect(() => {
     function move() {
@@ -88,6 +99,20 @@ export const BackgroundGradientAnimation = ({
 
   return (
     <div
+      style={
+        {
+          "--gradient-background-start": gradientBackgroundStart,
+          "--gradient-background-end": gradientBackgroundEnd,
+          "--first-color": firstColor,
+          "--second-color": secondColor,
+          "--third-color": thirdColor,
+          "--fourth-color": fourthColor,
+          "--fifth-color": fifthColor,
+          "--pointer-color": pointerColor,
+          "--size": size,
+          "--blending-value": blendingValue,
+        } as React.CSSProperties
+      }
       className={cn(
         "w-full h-full absolute overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
         containerClassName
@@ -120,7 +145,7 @@ export const BackgroundGradientAnimation = ({
       >
         <div
           className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_var(--first-color)_0,_var(--first-color)_50%)_no-repeat]`,
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--first-color),_0.8)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:center_center]`,
             `animate-first`,

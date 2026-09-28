@@ -12,6 +12,9 @@ import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
 
+import { ShimmerButton } from "./shimmer-button";
+import { RainbowButton } from "./rainbow-button";
+
 export const BentoGrid = ({
   className,
   children,
@@ -52,8 +55,8 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const leftLists = ["React.js", "Next.js", "TypeScript"];
+  const rightLists = ["Tailwind", "Three.js", "Node.js"];
 
   const [copied, setCopied] = useState(false);
 
@@ -67,24 +70,30 @@ export const BentoGridItem = ({
   };
 
   const handleCopy = () => {
-    const text = "hsu@jsmastery.pro";
-    navigator.clipboard.writeText(text);
+    const text = "hridaysecure444@gmail.com";
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    }
     setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 4000);
   };
 
   return (
     <div
+      id={id === 4 ? "cv" : undefined}
       className={cn(
-        // remove p-4 rounded-3xl dark:bg-black dark:border-white/[0.2] bg-white  border border-transparent, add border border-white/[0.1] overflow-hidden relative
-        "row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+        "row-span-1 relative overflow-hidden rounded-3xl group/bento hover:shadow-[0_8px_30px_rgba(19,214,233,0.12)] transition duration-300 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+        id === 6 ? "" : "bg-black",
         className
       )}
       style={{
-        //   add these two
-        //   you can generate the color from here https://cssgradient.io/
-        background: "rgb(4,7,29)",
+        background: id === 6 ? "rgb(4,7,29)" : "#000000",
         backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+          id === 6
+            ? "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)"
+            : "#000000",
       }}
     >
       {/* add img divs */}
@@ -113,7 +122,16 @@ export const BentoGridItem = ({
         </div>
         {id === 6 && (
           // add background animation , remove the p tag
-          <BackgroundGradientAnimation>
+          <BackgroundGradientAnimation
+            gradientBackgroundStart="rgb(4, 28, 44)"
+            gradientBackgroundEnd="rgb(4, 7, 29)"
+            firstColor="19, 214, 233"
+            secondColor="7, 88, 104"
+            thirdColor="114, 248, 241"
+            fourthColor="6, 182, 212"
+            fifthColor="37, 99, 235"
+            pointerColor="19, 214, 233"
+          >
             <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
           </BackgroundGradientAnimation>
         )}
@@ -143,57 +161,90 @@ export const BentoGridItem = ({
 
           {/* Tech stack list div */}
           {id === 3 && (
-            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
+            <div className="flex gap-2 lg:gap-3 w-fit absolute -right-2 sm:-right-1 lg:right-2 top-1/2 -translate-y-1/2 z-20">
               {/* tech stack lists */}
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
+              <div className="flex flex-col gap-1.5 sm:gap-2 lg:gap-2.5">
                 {leftLists.map((item, i) => (
-                  <span
+                  <ShimmerButton
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E] text-white"
+                    shimmerColor="#72F8F1"
+                    shimmerSize="0.1em"
+                    shimmerDuration="3s"
+                    background="rgba(0, 0, 0, 1)"
+                    className="!cursor-default active:translate-y-0 select-none w-full !px-3 !py-1 lg:!px-4 lg:!py-1.5 text-xs lg:text-sm font-medium text-white shadow-2xl"
                   >
-                    {item}
-                  </span>
+                    <span className="relative z-10 text-xs lg:text-sm font-medium text-white !cursor-default whitespace-nowrap">
+                      {item}
+                    </span>
+                  </ShimmerButton>
                 ))}
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+                <span className="h-4 sm:h-5 lg:h-6 w-full rounded-full bg-black/40 border border-white/5 opacity-25"></span>
               </div>
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+              <div className="flex flex-col gap-1.5 sm:gap-2 lg:gap-2.5">
+                <span className="h-4 sm:h-5 lg:h-6 w-full rounded-full bg-black/40 border border-white/5 opacity-25"></span>
                 {rightLists.map((item, i) => (
-                  <span
+                  <ShimmerButton
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E] text-white"
+                    shimmerColor="#72F8F1"
+                    shimmerSize="0.1em"
+                    shimmerDuration="3s"
+                    background="rgba(0, 0, 0, 1)"
+                    className="!cursor-default active:translate-y-0 select-none w-full !px-3 !py-1 lg:!px-4 lg:!py-1.5 text-xs lg:text-sm font-medium text-white shadow-2xl"
                   >
-                    {item}
-                  </span>
+                    <span className="relative z-10 text-xs lg:text-sm font-medium text-white !cursor-default whitespace-nowrap">
+                      {item}
+                    </span>
+                  </ShimmerButton>
                 ))}
               </div>
             </div>
           )}
+
+          {/* CV Section redirect button */}
+          {id === 4 && (
+            <div className="mt-5 relative z-20">
+              <RainbowButton
+                asChild
+                className="rounded-xl px-5 py-2.5 text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
+              >
+                <a href="#cv-details" target="_blank" rel="noopener noreferrer">
+                  <span>View CV &gt;</span>
+                </a>
+              </RainbowButton>
+            </div>
+          )}
+
           {id === 6 && (
-            <div className="mt-5 relative">
-              {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
+            <div className="mt-5 relative z-20">
               <div
                 className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
                   }`}
               >
                 {/* <img src="/confetti.gif" alt="confetti" /> */}
                 {copied && (
-                  <Lottie options={defaultOptions} height={200} width={400} />
+                  <Lottie
+                    options={{
+                      loop: false,
+                      autoplay: true,
+                      animationData: animationData,
+                      rendererSettings: {
+                        preserveAspectRatio: "xMidYMid slice",
+                      },
+                    }}
+                    height={200}
+                    width={400}
+                    eventListeners={[]}
+                  />
                 )}
               </div>
 
-              <MagicButton
-                title={copied ? "Email is Copied!" : "Copy my email address"}
-                icon={<IoCopyOutline />}
-                position="left"
-                handleClick={handleCopy}
-                otherClasses="!bg-[#161A31]"
-              />
+              <RainbowButton
+                onClick={handleCopy}
+                className="w-full sm:w-auto px-6 py-2.5 gap-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
+              >
+                <IoCopyOutline className={copied ? "text-[#13D6E9] text-base" : "text-[#72F8F1] text-base"} />
+                <span>{copied ? "Email is Copied!" : "Copy my email address"}</span>
+              </RainbowButton>
             </div>
           )}
         </div>

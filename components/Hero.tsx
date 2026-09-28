@@ -8,6 +8,7 @@ import CountUp from "react-countup";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { MeshGradientBackground } from "./ui/mesh-gradient";
 import BlendedVideo from "./BlendedVideo";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 
 interface HeroProps {
   activeTab?: string;
@@ -346,13 +347,14 @@ const Hero: React.FC<HeroProps> = ({
                   className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 pt-1 sm:pt-2 w-full sm:w-auto justify-center md:justify-start"
                 >
                   {/* CTA Button */}
-                  <a
-                    href="#cv"
-                    className="group relative inline-flex items-center justify-center text-[#13D6E9] hover:text-primary-foreground text-xs sm:text-sm tracking-wider font-semibold rounded-full px-6 py-3 overflow-hidden bg-background/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_0_rgba(7,88,104,0.35)] transition-colors duration-300 self-center md:self-start sm:self-auto active:scale-95"
+                  <RainbowButton
+                    asChild
+                    className="rounded-full px-7 py-3 text-xs sm:text-sm tracking-wider font-semibold self-center md:self-start sm:self-auto shadow-lg shadow-cyan-500/10 active:scale-95 transition-transform"
                   >
-                    <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out -z-10" />
-                    <span>VIEW CV &gt;</span>
-                  </a>
+                    <a href="#cv">
+                      VIEW CV &gt;
+                    </a>
+                  </RainbowButton>
 
                   {/* Social Icons */}
                   <div className="flex items-center justify-center md:justify-start gap-2.5 sm:gap-3">
